@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOR U<3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="backgroundMusic" loop></audio>
+    
+    <div id="page1" class="page-container active">
+        <img class="photo-box" id="p1-photo1" src="L.jpg" alt="Foto Kenangan 1">
+        <img class="photo-box" id="p1-photo2" src="LA.jpg" alt="Foto Kenangan 2">
+        <img class="photo-box" id="p1-photo3" src="LAY.jpg" alt="Foto Kenangan 3">
+        <h1>HaiiLayaa!</h1>
+        
+        <p style="margin-bottom: 5px;">Chose Your Favorite Song:</p>
+        <select id="musicSelector" style="padding: 10px; border: 2px solid #ff80ab; border-radius: 8px; margin-bottom: 15px; width: 280px; font-size: 1.1em;">
+            <option value="" disabled selected>-- Pilih Lagu Romantis --</option>
+            <option value="about u.mp3">Lagu 1: About U</option>
+            <option value="youu.mp3">Lagu 2: its'you</option>
+            <option value="thousand year.mp3">Lagu 3: Thousand Years</option>
+            <option value="lagu_empat.mp3">Lagu 4: Perfect</option>
+        </select>
+        
+        <p>Masukkan Nama Kamu!:</p>
+        <input type="text" id="recipientName" placeholder="Nama Panggilanmu">
+        <button onclick="goToPage2()">KLIK INI</button>
+    </div>
+
+    <div id="page2" class="page-container">
+        <h1 id="page2-greeting">Ciee, Kamu Ulang Tahun Ya?</h1>
+
+        <div class="secret-container">
+            <div id="riddle-container">
+                <p id="riddle-text">Selamat datang di pintu rahasia! Jawab tebak-tebakan ini untuk membuka kejutan utama.</p>
+
+                <input type="text" id="riddle-answer-input" placeholder="Tulis Jawabannya (Angka)" onkeyup="if (event.keyCode === 13) checkAnswer()">
+                
+                <p id="riddle-message"></p>
+
+                <button class="secret-button" id="answer-button" onclick="checkAnswer()">CEK JAWABAN</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page3" class="page-container">
+        <div class="photo-gallery">
+            <img class="photo" src="L.jpg" alt="Foto Spesial 4">
+            <img class="photo" src="LAY.jpg" alt="Foto Spesial 5">
+            <img class="photo" src="LA.jpg" alt="Foto Spesial 6">
+        </div>
+        
+        <h1 id="greeting" style="z-index: 1;">Selamat Ulang Tahun Layyya!</h1>
+
+        <div class="message-box">
+            <p>
+                Untuk [Nama Anda], Happy birthday, Sayang yang ke 20 tahunnya! Semoga hari spesial ini isinya cuma senyum, tawa, dan semua hal manis yang kamu suka. Ingat, kamu adalah prioritas dan segalanya buat aku.
+            <p>
+                Aku doakan semua cita-cita kamu, mau sekecil apapun itu, bisa tercapai dengan cara yang paling indah. Aku di sini, siap jadi *supporter* nomor satumu buat semua petualangan baru di umur kamu sekarang.
+            <p>
+                Pokoknya, nikmatin hari ini. Jangan lupa senyum, karena senyum kamu itu yang paling aku suka. Semoga tahun ini jadi yang paling keren dan penuh kenangan indah!
+            </p>
+            
+            <div class="signature">
+                From: <span id="senderName"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
