@@ -4,18 +4,18 @@ const correctRiddleAnswer = "ZIDAN";
 // GANTI INI: Jawaban teka-teki tahap 2 (LAYA)
 const correctRiddleAnswer2 = "LAYA";
 // GANTI INI: Tanggal lahir yang benar (DDMMYYYY)
-const correctLockCode = "10012006"; 
+const correctLockCode = "10012006"; 
 
-// Pesan Ulang Tahun yang akan diketik (TIDAK ADA PERUBAHAN TEKS)
+// Pesan Ulang Tahun yang akan diketik 
 const birthdayMessage = [
-    // Paragraf 1
-    "Aku tahu hari ini adalah hari yang sangat spesial untukmu. Walaupun kita mungkin sudah lama tidak bertemu, aku ingin kamu tahu bahwa aku tidak pernah melupakan momen persahabatan kita di masa lalu.",
-    // Paragraf 2
-    "Kamu selalu menjadi salah satu orang yang paling ceria dan penuh semangat yang pernah aku kenal. Aku harap di hari ulang tahunmu ini, semua kebahagiaan dan kebaikan yang kamu sebarkan kembali padamu berlipat ganda.",
-    // Paragraf 3
-    "Ini adalah perjalanan kecil yang aku buat untukmu. Aku harap kamu suka dengan kejutan sederhananya!",
-    // Paragraf 4
-    "Semoga panjang umur, sehat selalu, dan semua impianmu tercapai. Jangan pernah berhenti tersenyum, ya! 🥰"
+    // Paragraf 1
+    "Aku tahu hari ini adalah hari yang sangat spesial untukmu. Walaupun kita mungkin sudah lama tidak bertemu, aku ingin kamu tahu bahwa aku tidak pernah melupakan momen persahabatan kita di masa lalu.",
+    // Paragraf 2
+    "Kamu selalu menjadi salah satu orang yang paling ceria dan penuh semangat yang pernah aku kenal. Aku harap di hari ulang tahunmu ini, semua kebahagiaan dan kebaikan yang kamu sebarkan kembali padamu berlipat ganda.",
+    // Paragraf 3
+    "Ini adalah perjalanan kecil yang aku buat untukmu. Aku harap kamu suka dengan kejutan sederhananya!",
+    // Paragraf 4
+    "Semoga panjang umur, sehat selalu, dan semua impianmu tercapai. Jangan pernah berhenti tersenyum, ya! 🥰"
 ];
 
 
@@ -29,7 +29,6 @@ function changePage(fromPageId, toPageId, delay = 0) {
 
     if (fromPage) {
         fromPage.classList.remove('active');
-        // Atur agar halaman 1 hilang total setelah transisi
         setTimeout(() => {
             fromPage.style.display = 'none';
         }, 1000); 
@@ -38,7 +37,6 @@ function changePage(fromPageId, toPageId, delay = 0) {
     if (toPage) {
         setTimeout(() => {
             toPage.style.display = 'flex';
-            // Paksa untuk memuat ulang animasi transisi
             void toPage.offsetWidth; 
             toPage.classList.add('active');
         }, delay);
@@ -128,7 +126,6 @@ function checkAnswer() {
 function checkAnswer2() {
     const input = document.getElementById('riddle-answer-input-2');
     const message = document.getElementById('riddle-message-2');
-    // Menggunakan jawaban default 'LAYA'
     const expectedAnswer = correctRiddleAnswer2; 
     const answer = input.value.toUpperCase().trim();
     
@@ -182,43 +179,43 @@ function checkLockCode() {
 // ===================================
 
 function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
-    
-    if (index >= messageArray.length) {
-        targetElement.classList.add('finished-typing');
-        
-        // Tampilkan Tanda Tangan setelah pesan selesai diketik
-        const signatureBox = document.getElementById('signature-box');
-        if (signatureBox) signatureBox.style.opacity = '1';
-        return;
-    }
+    
+    if (index >= messageArray.length) {
+        targetElement.classList.add('finished-typing');
+        
+        // Tampilkan Tanda Tangan setelah pesan selesai diketik
+        const signatureBox = document.getElementById('signature-box');
+        if (signatureBox) signatureBox.style.opacity = '1';
+        return;
+    }
 
-    let currentP = targetElement.querySelector('p:last-of-type');
-    
-    if (charIndex === 0) {
-        if (currentP) {
-            currentP.classList.remove('typing-active'); 
-        }
-        
-        const newP = document.createElement('p');
-        newP.classList.add('typing-active'); 
-        targetElement.appendChild(newP);
-        currentP = newP;
-    }
+    let currentP = targetElement.querySelector('p:last-of-type');
+    
+    if (charIndex === 0) {
+        if (currentP) {
+            currentP.classList.remove('typing-active'); 
+        }
+        
+        const newP = document.createElement('p');
+        newP.classList.add('typing-active'); 
+        targetElement.appendChild(newP);
+        currentP = newP;
+    }
 
-    const textToType = messageArray[index];
-    
-    if (charIndex < textToType.length) {
-        currentP.textContent += textToType.charAt(charIndex);
-        charIndex++;
-        // Kecepatan mengetik: 60ms/karakter
-        setTimeout(() => typeMessage(messageArray, targetElement, index, charIndex), 60); 
-    } else {
-        // Selesai satu paragraf
-        index++;
-        charIndex = 0;
-        // Jeda antar paragraf: 800ms
-        setTimeout(() => typeMessage(messageArray, targetElement, index, charIndex), 800); 
-    }
+    const textToType = messageArray[index];
+    
+    if (charIndex < textToType.length) {
+        currentP.textContent += textToType.charAt(charIndex);
+        charIndex++;
+        // Kecepatan mengetik: 60ms/karakter
+        setTimeout(() => typeMessage(messageArray, targetElement, index, charIndex), 60); 
+    } else {
+        // Selesai satu paragraf
+        index++;
+        charIndex = 0;
+        // Jeda antar paragraf: 800ms
+        setTimeout(() => typeMessage(messageArray, targetElement, index, charIndex), 800); 
+    }
 }
 
 
@@ -239,7 +236,7 @@ function fadeOutMusic(audioElement, duration = 1000) {
         if (currentStep >= steps) {
             clearInterval(fadeInterval);
             audioElement.pause();
-            audioElement.volume = startVolume; 
+            audioElement.volume = startVolume; 
         }
     }, stepDuration);
 }
