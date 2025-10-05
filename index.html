@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOR U &lt;3</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Passion+One:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -13,7 +13,7 @@
     <div id="background-layer"></div>
     
     <audio id="backgroundMusic" loop src="Beaniee.mp3"></audio>
-    <audio id="birthdaySong" src="BirthdaySong.mp3"></audio> 
+    <audio id="birthdaySong" src="Birthdayy.mp3" loop></audio> 
 
     <div class="sparkle" style="--d: 8s; --l: 5%;"></div>
     <div class="sparkle" style="--d: 12s; --l: 10%;"></div>
@@ -38,11 +38,15 @@
     
     <div id="page1" class="page-container active">
         
+        <img class="photo-box" id="p1-photo1" src="L.jpg" alt="Foto Kenangan 1">
+        <img class="photo-box" id="p1-photo2" src="LA.jpg" alt="Foto Kenangan 2">
+        <img class="photo-box" id="p1-photo3" src="LAY.jpg" alt="Foto Kenangan 3">
+
         <div class="main-content-p1">
             <h1>Happy Birthdayy Yaa!</h1> 
             
             <p class="fancy-text-box">
-                Welcome yaa di halaman spesial ini. Ini dibuat cuma buat kamu, Teman Terbaik Aku Yang paling keren! 
+                👋 Welcome yaa di halaman spesial ini. Ini dibuat cuma buat kamu, Teman Terbaik Aku Yang paling keren! 
                 <br>
                 Nah sebelum lanjut, isi nama kamu dulu yah:
             </p>
@@ -56,29 +60,30 @@
     <div id="page2" class="page-container">
         <h1 id="page2-greeting"></h1> 
 
-        <div class="secret-container">
-            <div id="riddle-container" class="fancy-riddle-box content-box">
+        <div class="secret-container" id="riddle-main-container"> 
+            
+            <div id="riddle-container">
                 <p class="riddle-intro-text">Sebagai ice breaker, Aku ada sedikit Games ringan untuk kamu. Tapi Gampang koo.</p>
-                <p id="riddle-text">
+                <p id="riddle-text" class="fancy-riddle-box">
                     Games:<br>
-                    Ada 5 huruf yang Dulu Sekelas Sama kamu di Smm Bogor, huruf pertama adalah nama depannya, Z huruf terakhirnya adalah N. Siapakah aku?
+                    Ada 5 huruf yang Dulu Sekelas Sama kamu di Smm Bogor, huruf pertama adalah Z huruf terakhirnya adalah N. Siapakah aku?
                 </p>
 
                 <input type="text" id="riddle-answer-input" placeholder="Tulis Jawabannya di sini " onkeyup="if (event.keyCode === 13) checkAnswer1()">
                 
-                <p id="riddle-message" style="color: #333333; font-weight: bold;"></p>
+                <p id="riddle-message"></p>
 
                 <button class="secret-button" id="answer-button" onclick="checkAnswer1()">Konfirmasi Jawaban</button> 
             </div>
             
-            <div id="riddle-container-2" class="fancy-riddle-box content-box" style="display: none; margin-top: 20px;">
+            <div id="riddle-container-2" style="display: none;">
                 <p class="riddle-intro-text" style="font-weight: bold;">Tahap 2: Ini mudah, cuma 4 huruf!</p>
-                <p id="riddle-text-2">
+                <p id="riddle-text-2" class="fancy-riddle-box">
                     Kata Kunci:<br>
                     Siapa orang yang ulang tahun hari ini? Tulis nama panggilannya.
                 </p>
                 <input type="text" id="riddle-answer-input-2" placeholder="Tulis di sin (4 Huruf)" onkeyup="if (event.keyCode === 13) checkAnswer2()">
-                <p id="riddle-message-2" style="color: #333333; font-weight: bold;"></p>
+                <p id="riddle-message-2"></p>
                 <button class="secret-button" id="answer-button-2" onclick="checkAnswer2()">Konfirmasi Jawaban Kata Kunci</button>
             </div>
         </div>
@@ -87,17 +92,17 @@
     <div id="page3" class="page-container">
         <h1>Tahap Terakhir Ya</h1>
         
-        <div class="lock-box content-box">
+        <div class="lock-box">
             <div id="lock-icon">🔒</div> 
             
-            <p class="instruction-text">Untuk membuka kunci ke halaman utama, silakan masukkan tanggal lahir kamu Dulu Yah **(DDMMYYYY)**.</p> 
+            <p class="instruction-text">Untuk membuka kunci ke halaman utama, silakan masukkan tanggal lahir kamu Dulu Yah.</p> 
             <div id="key-input-container">
                 <input type="text" id="key-input-dd" placeholder="Tgl" inputmode="numeric" pattern="[0-9]*" maxlength="2"> 
                 <input type="text" id="key-input-mm" placeholder="Bln" inputmode="numeric" pattern="[0-9]*" maxlength="2">
                 <input type="text" id="key-input-yyyy" placeholder="Tahun" inputmode="numeric" pattern="[0-9]*" maxlength="4">
             </div>
             
-            <p id="lock-message" style="color: #333333; font-weight: bold; margin-top: 15px;"></p>
+            <p id="lock-message" style="color: #ff69b4; font-weight: bold; margin-top: 15px;"></p>
             
             <button type="button" onclick="checkLockCode()">UNLOCK</button> 
         </div>
@@ -107,11 +112,10 @@
         
         <h1 id="greeting" style="z-index: 1;">Happy Birthday, <span id="recipientNameDisplay"></span>!</h1> 
 
-        
         <div class="photo-display-container">
             <img class="display-photo photo-1" src="LA.jpg" alt="Foto Spesial 1">
             <img class="display-photo photo-2" src="LAY.jpg" alt="Foto Spesial 2">
-            <img class="display-photo photo-3" src="Lya.jpg" alt="Foto Spesial 3">
+            <img class="display-photo photo-3" src="L.jpg" alt="Foto Spesial 3">
         </div>
 
         <div class="message-box">
