@@ -38,19 +38,19 @@ body {
     line-height: 1.4; 
 }
 
-/* 🟢 LAYER BACKGROUND GAMBAR BARU (Di bawah semua) 🟢 */
+/* 🟢 LAYER BACKGROUND GAMBAR BARU (HANYA SATU FOTO) 🟢 */
 #background-layer {
     position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Pindahkan Background Gambar ke sini */
-    /* GANTI 'LA.jpg' DAN 'L.jpg' DENGAN NAMA FILE BACKGROUND ANDA */
-    background-image: url('LA.jpg'), url('L.jpg'); 
-    background-size: 50% auto, 50% auto; 
-    background-position: left top, right bottom; 
+    /* 💥 PERBAIKAN: HANYA MENGGUNAKAN L.jpg */
+    background-image: url('L.jpg'); 
+    background-size: cover; /* Pastikan menutupi seluruh layar */
+    background-position: center; 
     background-repeat: no-repeat; 
+    background-attachment: fixed; /* Penting untuk stabilitas di HP */
     background-color: #f0f8ff; 
     z-index: -10; 
 }
@@ -114,7 +114,8 @@ body::before { display: none; }
     overflow-y: auto; 
 }
 
-#page4.page-container {
+/* 💥 PERUBAHAN: Halaman akhir sekarang Page 5 */
+#page5.page-container {
     padding-bottom: 40px !important; 
     justify-content: flex-start; 
 }
@@ -128,7 +129,8 @@ body::before { display: none; }
 
 
 /* JUDUL H1 */
-#page1 h1, #page2-greeting, #page3 h1, #page4 h1 {
+/* 💥 PERUBAHAN: Selector H1 diperluas untuk Page 5 */
+#page1 h1, #page2-greeting, #page3 h1, #page4 h1, #page5 h1 {
     font-family: 'Dancing Script', cursive; 
     font-size: 3.8em; 
     color: #ffc0cb; 
@@ -138,15 +140,16 @@ body::before { display: none; }
     font-weight: 700;
 }
 #page1 h1 { font-size: 3.5em; padding-bottom: 0px; margin-bottom: 10px; }
-#page3 h1 { font-size: 4.0em; padding-top: 10px; margin-bottom: 20px; }
-#page4 h1 { 
+#page2-greeting { font-size: 4.0em; padding-top: 10px; margin-bottom: 20px; }
+#page3 h1, #page4 h1 { font-size: 4.0em; padding-top: 10px; margin-bottom: 20px; }
+#page5 h1 { 
     opacity: 0; 
     animation: fadeInTitle 2s ease-out forwards; 
     animation-delay: 1.2s; 
     font-weight: 700;
 }
 
-/* Animasi untuk Halaman 4 (H1) */
+/* Animasi untuk Halaman Akhir (H1) */
 @keyframes fadeInTitle {
     0% { transform: translateY(-30px) scale(0.8); opacity: 0; }
     100% { transform: translateY(0px) scale(1); opacity: 1; }
@@ -205,7 +208,7 @@ input[type="text"]:focus, select:focus {
 
 
 /* ==================================== */
-/* HALAMAN 2 & 3 (Challenge & Lock) */
+/* HALAMAN RIDDLE & LOCK */
 /* ==================================== */
 
 @keyframes bounceInUp {
@@ -214,7 +217,8 @@ input[type="text"]:focus, select:focus {
 }
 
 /* Container Challenge/Lock: Lebih lebar dan padat  */
-.secret-container, .lock-box {
+/* 💥 PERUBAHAN: Gunakan .content-box untuk Riddle & Lock */
+.content-box {
     background: #ffffff; 
     background-image: none; 
 
@@ -224,7 +228,7 @@ input[type="text"]:focus, select:focus {
     box-shadow: 0 0 0 4px #ffc0cb, 0 0 25px rgba(0, 0, 0, 0.4); 
     opacity: 0;
     animation: bounceInUp 1.5s ease-out forwards; 
-    animation-delay: 2s; 
+    animation-delay: 0.5s; /* Jeda sedikit setelah ganti halaman */
     font-family: 'Quicksand', sans-serif; 
     color: #333;
     max-width: 600px; 
@@ -236,13 +240,11 @@ input[type="text"]:focus, select:focus {
 }
 
 /* TEKS PETUNJUK BIASA & Sub Judul Kotak Putih  */
-.riddle-intro-text, .lock-box .instruction-text, #riddle-container p {
+.riddle-intro-text, .instruction-text, .fancy-riddle-box p {
     font-size: 1.15em; 
     color: #333333; 
     line-height: 1.5; 
     padding: 8px 12px; 
-    border-left: 5px solid #ff69b4; 
-    border-radius: 0; 
     background-color: #fffaf0; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     text-shadow: none;
@@ -330,16 +332,27 @@ input[type="text"]:focus, select:focus {
 }
 
 
-/* 🟢 PERUBAHAN BARU: GAYA PITA PADA INPUT RIDDLE 2 🟢 */
+/* 🟢 PERUBAHAN: GAYA PITA PADA INPUT RIDDLE 2 🟢 */
 /* Container input riddle 2 dijadikan posisi relatif agar pita bisa diposisikan absolut di dalamnya */
-#riddle-container-2 {
+/* 💥 PERBAIKAN: Gunakan .fancy-riddle-box untuk style ini */
+.fancy-riddle-box {
+    border: 3px solid #ff69b4; 
+    border-radius: 15px; 
+    padding: 25px;
+    margin-top: 20px;
+    background-color: #ffffff; 
+    background-image: none !important; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+                0 0 0 8px #ffc0cb; 
+    color: #333333;
+    text-shadow: none; 
+    animation: fadeInScale 0.5s ease-out forwards;
     position: relative;
-    padding-top: 35px; /* Tambahkan padding agar pita di atas tidak menimpa */
+    padding-top: 35px;
 }
-#riddle-container-2 input[type="text"] {
-    position: relative; /* Buat input menjadi elemen yang relatif */
+.fancy-riddle-box input[type="text"] {
+    position: relative; 
     z-index: 5;
-    /* Ubah border input agar lebih mirip bingkai framed-text */
     border: 1px dashed rgba(255, 105, 180, 0.8) !important; 
     box-shadow: 0 0 5px rgba(255, 105, 180, 0.7) !important; 
     padding: 10px;
@@ -348,12 +361,12 @@ input[type="text"]:focus, select:focus {
     margin-bottom: 5px;
 }
 
-/* Ornamen Pita pada Input Riddle 2 */
-#riddle-container-2::before,
-#riddle-container-2::after {
+/* Ornamen Pita pada Riddle Box */
+.fancy-riddle-box::before,
+.fancy-riddle-box::after {
     content: '🎀'; /* Simbol Pita/Ribbon */
     position: absolute;
-    font-size: 2.0em; /* Ukuran lebih besar */
+    font-size: 2.0em; 
     color: #ffc0cb; 
     opacity: 1;
     z-index: 10;
@@ -361,14 +374,14 @@ input[type="text"]:focus, select:focus {
     pointer-events: none;
 }
 /* Pita Kiri Atas */
-#riddle-container-2::before {
-    top: 5px; /* Posisikan ke atas container */
+.fancy-riddle-box::before {
+    top: 5px; 
     left: 10px; 
     transform: rotate(-10deg);
 }
 /* Pita Kanan Atas */
-#riddle-container-2::after {
-    top: 5px; /* Posisikan ke atas container */
+.fancy-riddle-box::after {
+    top: 5px; 
     right: 10px;
     transform: rotate(10deg);
 }
@@ -389,8 +402,13 @@ input[type="text"]:focus, select:focus {
 }
 
 /* ==================================== */ 
-/* HALAMAN 4 (PESAN & FOTO) */
+/* HALAMAN 5 (PESAN & FOTO) */
 /* ==================================== */ 
+
+@keyframes zoomInRotate { 
+    0% { transform: scale(0.5) rotateY(90deg); opacity: 0; }
+    100% { transform: scale(1) rotateY(0deg); opacity: 1; }
+}
 
 /* Container Foto: FIX HANYA 3 FOTO! */
 .photo-display-container {
@@ -423,22 +441,17 @@ input[type="text"]:focus, select:focus {
 
 
 /* FIX SPESIFIK FOTO 2 dan 3: Fokuskan ke bagian ATAS (wajah) */
-/* 💥 KRUSIAL: Ini adalah kode anti-potong wajah */
 .display-photo.photo-2,
 .display-photo.photo-3 {
     object-position: top center; 
 }
 
-/* Foto 1 (LA.jpg) dibuat standar center, karena sebelumnya sudah benar */
+/* Foto 1 dibuat standar center */
 .display-photo.photo-1 {
     object-position: center;
 }
 
 
-@keyframes zoomInRotate { 
-    0% { transform: scale(0.5) rotateY(90deg); opacity: 0; }
-    100% { transform: scale(1) rotateY(0deg); opacity: 1; }
-}
 /* Mempercepat animasi foto */
 .display-photo:nth-child(1) { animation-delay: 2.0s; } 
 .display-photo:nth-child(2) { animation-delay: 2.2s; }
@@ -473,17 +486,17 @@ input[type="text"]:focus, select:focus {
     color: #333333 !important; 
     text-shadow: none !important; 
     
-    position: relative; /* PENTING untuk ornamen kupu-kupu dan pita */
+    position: relative; 
     
     background-image: none;
     background-color: #fffaf0;
 }
 
-/* 🦋 DEKORASI KUPU-KUPU & PITA DI KOTAK PESAN (HALAMAN 4) 🎀 */
+/* 🦋 DEKORASI KUPU-KUPU & PITA DI KOTAK PESAN (HALAMAN 5) 🎀 */
 .message-box::before,
 .message-box::after {
     position: absolute;
-    font-size: 2.5em; /* Ukuran ornamen */
+    font-size: 2.5em; 
     z-index: 101; 
     pointer-events: none;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px #ffc0cb;
@@ -524,7 +537,7 @@ input[type="text"]:focus, select:focus {
 
 /* Paragraf di dalam Kotak Pesan */
 .message-box p {
-    margin: 5px 0; /* Jarak antar paragraf hasil ketik */
+    margin: 5px 0; 
     text-align: justify; 
     color: #333333 !important; 
     text-shadow: none !important; 
@@ -537,7 +550,7 @@ input[type="text"]:focus, select:focus {
 /* Kursor berkedip pada paragraf yang sedang diketik (paragraf terakhir) */
 #typing-text-target p:last-of-type {
     display: inline-block; 
-    border-right: 3px solid #ff69b4; /* Kursor vertical bar, warna pink */
+    border-right: 3px solid #ff69b4; 
     animation: blink-caret 0.75s step-end infinite;
     padding-right: 5px; 
     white-space: pre-wrap; 
@@ -571,40 +584,14 @@ input[type="text"]:focus, select:focus {
     color: #ff69b4; 
     text-align: right;
     display: block;
-    margin-top: 15px; /* Naikkan sedikit margin agar ada jarak dari teks akhir */
+    margin-top: 15px; 
     line-height: 1.1;
-    opacity: 0; /* Mulai disembunyikan, akan difade-in oleh JS */
+    opacity: 0; 
     transition: opacity 1s ease-in-out;
 }
-#signature-name { /* Tambahan style untuk nama pengirim */
+#signature-name { 
     font-family: 'Dancing Script', cursive;
     font-size: 1em;
-}
-
-/* --- TAMPILAN KHUSUS UNTUK TEKA-TEKI KEDUA (Fancy Box) --- */
-.fancy-riddle-box {
-    border: 3px solid #ff69b4; 
-    border-radius: 15px; 
-    padding: 25px;
-    margin-top: 20px;
-    background-color: #ffffff; 
-    background-image: none !important; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
-                0 0 0 8px #ffc0cb; 
-    color: #333333;
-    text-shadow: none; 
-    animation: fadeInScale 0.5s ease-out forwards;
-}
-
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
 
 /* Tambahan CSS untuk animasi gagal lock jika belum ada */
@@ -622,7 +609,8 @@ input[type="text"]:focus, select:focus {
     .photo-display-container { gap: 10px; }
     .display-photo { width: 35%; height: 160px; }
     #page2-greeting { font-size: 4em; }
-    #page3 h1, #page1 h1, #page4 h1 { font-size: 3.5em; }
+    /* 💥 PERBAIKAN: Page 3, 4, dan 5 */
+    #page3 h1, #page4 h1, #page5 h1 { font-size: 3.5em; } 
     
     /* Atur ulang ornamen agar tidak terlalu jauh saat tablet */
     .message-box::before { top: -20px; left: -10px; font-size: 2.0em; }
@@ -632,7 +620,8 @@ input[type="text"]:focus, select:focus {
 @media (max-width: 480px) {
     .photo-display-container { flex-wrap: nowrap; gap: 8px; max-width: 95%; margin: 15px auto; }
     .display-photo { width: 30%; height: 140px; }
-    #page1 h1, #page3 h1, #page4 h1 { font-size: 3em; }
+    /* 💥 PERBAIKAN: Page 3, 4, dan 5 */
+    #page1 h1, #page3 h1, #page4 h1, #page5 h1 { font-size: 3em; } 
     #page2-greeting { font-size: 3.5em; }
     .framed-text, .fancy-text-box { font-size: 1.0em; }
     .framed-text { display: block; margin-right: auto; margin-left: auto; margin-bottom: 5px; }
