@@ -46,10 +46,9 @@ body {
     width: 100%;
     height: 100%;
     /* Pindahkan Background Gambar ke sini */
-    /* Menggunakan satu gambar L.jpg agar fokus di top center lebih efektif */
-    background-image: url('L.jpg'); 
+    background-image: url('L.jpg'); /* Ganti dengan gambar yang diinginkan */
     background-size: cover; /* Cover seluruh area */
-    /* 💥 FIX FOKUS: Fokuskan ke bagian atas agar wajah/subjek utama terlihat */
+    /* 💥 FIX FOKUS WAJAH: Fokuskan ke bagian atas agar wajah/subjek utama terlihat */
     background-position: top center; 
     background-repeat: no-repeat; 
     background-color: #f0f8ff; 
@@ -234,9 +233,9 @@ input[type="text"]:focus, select:focus {
     border-radius: 12px; 
     box-shadow: 0 0 0 4px #ffc0cb, 0 0 25px rgba(0, 0, 0, 0.4); 
     opacity: 0;
-    /* Animasi akan dipicu oleh JS setelah transisi page */
-    /* animation: bounceInUp 1.5s ease-out forwards; 
-    animation-delay: 2s; */ 
+    /* 💥 FIX KRUSIAL: Atur delay agar konten muncul setelah transisi halaman */
+    animation: bounceInUp 1.5s ease-out forwards; 
+    animation-delay: 1.8s; 
     
     font-family: 'Quicksand', sans-serif; 
     color: #333;
@@ -441,13 +440,13 @@ input[type="text"]:focus, select:focus {
 
 /* 🟢 FIX SPESIFIK FOTO: Fokuskan ke bagian ATAS (wajah) */
 .display-photo.photo-1 {
-    object-position: top center; /* LA.jpg */
+    object-position: top center; 
 }
 .display-photo.photo-2 {
-    object-position: top center; /* LAY.jpg */
+    object-position: top center; 
 }
 .display-photo.photo-3 {
-    object-position: top center; /* Lya.jpg */
+    object-position: top center; 
 }
 
 
@@ -483,7 +482,6 @@ input[type="text"]:focus, select:focus {
     z-index: 100; 
     opacity: 0; 
     animation: fadeIn 1.2s ease-out forwards; 
-    /* 🟢 FIX DELAY: Tunggu foto selesai (sekitar 2.5s) + 0.5s fade in body = 3.0s */
     animation-delay: 3.0s; 
     
     line-height: 1.5; 
@@ -599,6 +597,7 @@ input[type="text"]:focus, select:focus {
 }
 
 /* --- TAMPILAN KHUSUS UNTUK TEKA-TEKI KEDUA (Fancy Box) --- */
+/* Dihapus karena sudah ada fancy-text-box yang lebih umum */
 .fancy-riddle-box {
     border: 3px solid #ff69b4; 
     border-radius: 15px; 
