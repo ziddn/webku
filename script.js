@@ -39,6 +39,9 @@ function changePage(fromPageId, toPageId, delay = 0) {
             // Aktifkan animasi content-box setelah pindah halaman
             const contentBox = toPage.querySelector('.content-box');
             if (contentBox) {
+                 // Reset animasi agar bisa diulang
+                 contentBox.style.animation = 'none'; 
+                 void contentBox.offsetWidth; // Trigger reflow
                  contentBox.style.animation = 'bounceInUp 1.5s ease-out forwards'; 
                  contentBox.style.opacity = '1';
             }
@@ -67,19 +70,26 @@ function goToPage2() {
 
 // Navigasi ke Halaman 3 (Riddle 2)
 function goToPage3() {
-    // Navigasi dari Riddle 1 (Page 2) ke Riddle 2 (Page 3)
     changePage('page2', 'page3');
 }
 
 // Navigasi ke Halaman 4 (Lock Code)
 function goToPage4() {
-    // Navigasi dari Riddle 2 (Page 3) ke Lock Code (Page 4)
     changePage('page3', 'page4');
 }
 
 // Navigasi ke Halaman 5 (Akhir)
 function goToPage5() {
-    // Musik TIDAK di-fade out di sini. Musik akan terus berlanjut.
+    const mainMusic = document.getElementById('backgroundMusic');
+    const birthdaySong = document.getElementById('birthdaySong');
+    
+    // 🟢 FIX MUSIK: Ganti lagu saat masuk Halaman 5
+    if (mainMusic) mainMusic.pause();
+    if (birthdaySong) {
+        birthdaySong.loop = true; // Pastikan lagu ulang tahun berulang
+        birthdaySong.volume = 0.6; // Atur volume
+        birthdaySong.play().catch(e => console.log("Birthday song autoplay blocked:", e));
+    }
     
     // Tampilkan nama di halaman 5
     document.getElementById('recipientNameDisplay').textContent = recipientName;
@@ -87,13 +97,13 @@ function goToPage5() {
     // Navigasi dari Lock Code (Page 4) ke Pesan Akhir (Page 5)
     changePage('page4', 'page5');
 
-    // Mulai efek ketik setelah halaman 5 muncul
+    // Mulai efek ketik setelah halaman 5 muncul dan foto sudah di-delay 0.9s
     setTimeout(() => {
         const targetElement = document.getElementById('typing-text-target');
         if (targetElement) {
             typeMessage(birthdayMessage, targetElement);
         }
-    }, 3500); // Tunda sedikit agar animasi foto selesai
+    }, 2000); // Delay 2 detik, setelah foto muncul sempurna (1.8s + 0.9s delay)
 }
 
 
