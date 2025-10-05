@@ -45,13 +45,25 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Pindahkan Background Gambar ke sini */
+    
+    /* 🌟 FIX KRUSIAL: Gunakan kedua gambar sebagai dekorasi di sudut-sudut */
     background-image: url('LA.jpg'), url('L.jpg'); 
-    background-size: 50% auto, 50% auto; 
+    
+    /* Ukuran diatur kecil (25%) agar tidak menutupi, tetapi tetap terlihat */
+    background-size: 25% auto, 25% auto; 
+    
+    /* Posisi: Kiri Atas dan Kanan Bawah */
     background-position: left top, right bottom; 
-    background-repeat: no-repeat; 
-    background-color: #f0f8ff; 
+    
+    background-repeat: no-repeat, no-repeat; /* Pastikan gambar dekorasi tidak diulang */
+    background-color: #f0f8ff; /* Warna solid sebagai latar belakang utama */
+    
     z-index: -10; 
+    
+    /* Tambahkan sedikit opacity atau blur agar tidak mengganggu konten */
+    opacity: 0.5;
+    filter: blur(2px);
+    transition: opacity 1s;
 }
 
 /* OVERLAY GELAP ELEGAN (Dihapus/Dinonaktifkan) */
@@ -617,6 +629,12 @@ input[type="text"]:focus, select:focus {
 /* ==================================== */
 
 @media (max-width: 768px) {
+    /* Background: Kecilkan ukuran dekorasi di sudut */
+    #background-layer {
+        background-size: 30% auto, 30% auto;
+        opacity: 0.4;
+    }
+    
     .photo-display-container { gap: 10px; }
     .display-photo { width: 35%; height: 160px; }
     #page2-greeting { font-size: 4em; }
@@ -628,6 +646,12 @@ input[type="text"]:focus, select:focus {
 }
 
 @media (max-width: 480px) {
+    /* Background: Kecilkan ukuran dekorasi di sudut lebih kecil lagi */
+    #background-layer {
+        background-size: 20% auto, 20% auto;
+        opacity: 0.3;
+    }
+    
     .photo-display-container { flex-wrap: nowrap; gap: 8px; max-width: 95%; margin: 15px auto; }
     .display-photo { width: 30%; height: 140px; }
     #page1 h1, #page3 h1, #page4 h1 { font-size: 3em; }
