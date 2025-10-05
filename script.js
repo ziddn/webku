@@ -1,6 +1,9 @@
 let recipientName = "";
+// Jawab teka-teki tahap 1: ZIDAN
 const correctRiddleAnswer = "ZIDAN";
+// Jawab teka-teki tahap 2: LAY
 const correctRiddleAnswer2 = "LAYA";
+// Ganti dengan tanggal lahir yang benar (DDMMYYYY)
 const correctLockCode = "10012006"; 
 
 // Pesan Ulang Tahun yang akan diketik
@@ -15,7 +18,166 @@ const birthdayMessage = [
     "Semoga panjang umur, sehat selalu, dan semua impianmu tercapai. Jangan pernah berhenti tersenyum, ya! 🥰"
 ];
 
-// FUNGSI UTAMA TYPING EFFECT
+
+// ===================================
+// FUNGSI NAVIGASI
+// ===================================
+
+function changePage(fromPageId, toPageId, delay = 0) {
+    const fromPage = document.getElementById(fromPageId);
+    const toPage = document.getElementById(toPageId);
+
+    if (fromPage) {
+        fromPage.classList.remove('active');
+        // Atur agar halaman 1 hilang total setelah transisi
+        setTimeout(() => {
+            fromPage.style.display = 'none';
+        }, 1000); 
+    }
+
+    if (toPage) {
+        setTimeout(() => {
+            toPage.style.display = 'flex';
+            // Paksa untuk memuat ulang animasi transisi
+            void toPage.offsetWidth; 
+            toPage.classList.add('active');
+        }, delay);
+    }
+}
+
+function goToPage2() {
+    recipientName = document.getElementById('recipientName').value.toUpperCase().trim();
+    if (recipientName.length < 2) {
+        alert("Nama panggilanmu harus diisi dulu, ya!");
+        return;
+    }
+    
+    // Putar musik (jika belum berjalan)
+    const music = document.getElementById('backgroundMusic');
+    if (music && music.paused) {
+        music.volume = 0.5; // Set volume awal
+        music.play().catch(e => console.log("Autoplay blocked:", e));
+    }
+
+    // Tampilkan nama di halaman 2
+    document.getElementById('page2-greeting').textContent = `Hai ${recipientName}!`;
+    changePage('page1', 'page2');
+    // Animasikan container teka-teki 1 agar muncul
+    document.querySelector('#riddle-container .fancy-riddle-box').style.opacity = '1';
+    document.querySelector('#riddle-container .fancy-riddle-box').style.animationDelay = '0s';
+
+}
+
+function goToPage3() {
+    changePage('page2', 'page3');
+}
+
+function goToPage4() {
+    // Fade out musik sebelum menampilkan halaman 4 (opsional)
+    const music = document.getElementById('backgroundMusic');
+    if (music) fadeOutMusic(music, 1500);
+
+    // Tampilkan nama di halaman 4
+    document.getElementById('recipientNameDisplay').textContent = recipientName;
+
+    changePage('page3', 'page4');
+
+    // Mulai efek ketik setelah halaman 4 muncul
+    setTimeout(() => {
+        const targetElement = document.getElementById('typing-text-target');
+        if (targetElement) {
+            typeMessage(birthdayMessage, targetElement);
+        }
+    }, 3500); // Tunda sedikit agar animasi foto selesai
+}
+
+
+// ===================================
+// FUNGSI RIDDLE & LOCK
+// ===================================
+
+function checkAnswer() {
+    const input = document.getElementById('riddle-answer-input');
+    const message = document.getElementById('riddle-message');
+    const answer = input.value.toUpperCase().trim();
+    
+    message.style.color = '#ff69b4';
+    
+    if (answer === correctRiddleAnswer) {
+        message.textContent = "🥳 BENAR! Kamu ingat aku! Sekarang, teka-teki tahap 2...";
+        input.disabled = true;
+        document.getElementById('answer-button').disabled = true;
+        
+        // Tampilkan teka-teki tahap 2
+        const riddle2Container = document.getElementById('riddle-container-2');
+        riddle2Container.style.display = 'block';
+        setTimeout(() => {
+            riddle2Container.style.opacity = '1';
+            riddle2Container.style.transform = 'scale(1)';
+        }, 100);
+
+    } else {
+        message.textContent = "SALAH! Coba ingat-ingat lagi nama temanmu yang dulu sekelas di SMM Bogor!";
+        input.value = "";
+    }
+}
+
+function checkAnswer2() {
+    const input = document.getElementById('riddle-answer-input-2');
+    const message = document.getElementById('riddle-message-2');
+    // Gunakan nama yang diinput di halaman 1, jika user mengisi 'Laya' di halaman 1
+    // Atau gunakan jawaban default 'LAYA' jika kita ingin jawaban default
+    const expectedAnswer = recipientName || correctRiddleAnswer2; 
+    const answer = input.value.toUpperCase().trim();
+    
+    message.style.color = '#ff69b4';
+    
+    if (answer === expectedAnswer) {
+        message.textContent = "🥳 BENAR SEKALI! Itu nama panggilanmu yang lucu! Lanjut ke tahap akhir!";
+        input.disabled = true;
+        document.getElementById('answer-button-2').disabled = true;
+        
+        // Tampilkan tombol untuk lanjut ke halaman 3
+        setTimeout(goToPage3, 1500);
+
+    } else {
+        message.textContent = `SALAH! Ingat nama panggilanmu sendiri! Petunjuk: ${expectedAnswer.charAt(0)}...`;
+        input.value = "";
+    }
+}
+
+
+function checkLockCode() {
+    const dd = document.getElementById('key-input-dd').value.padStart(2, '0');
+    const mm = document.getElementById('key-input-mm').value.padStart(2, '0');
+    const yyyy = document.getElementById('key-input-yyyy').value;
+    const lockCode = dd + mm + yyyy;
+    const message = document.getElementById('lock-message');
+    
+    message.style.color = '#ff69b4';
+
+    if (lockCode === correctLockCode) {
+        message.textContent = "KUNCI TERBUKA! Selamat datang di kejutan utama! 🔓";
+        document.querySelector('.lock-box button').disabled = true;
+        document.getElementById('lock-icon').textContent = '✅';
+        
+        // Lanjut ke halaman 4
+        setTimeout(goToPage4, 1500);
+
+    } else {
+        message.textContent = "KODE SALAH! Tanggal lahirmu (DDMMYYYY) mana? Coba lagi! ❌";
+        document.querySelector('.lock-box').style.animation = 'lockshake 0.5s';
+        setTimeout(() => {
+            document.querySelector('.lock-box').style.animation = 'none';
+        }, 500);
+    }
+}
+
+
+// ===================================
+// FUNGSI TYPING EFFECT (EFEK KETIK)
+// ===================================
+
 function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
     
     // Periksa apakah sudah selesai mengetik semua paragraf
@@ -62,227 +224,24 @@ function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
 }
 
 
-// Fungsi untuk membuat musik memudar (fade out)
+// ===================================
+// FUNGSI MUSIK FADE
+// ===================================
+
 function fadeOutMusic(audioElement, duration = 1000) {
-    const startVolume = audioElement.volume;
-    const steps = 50;
-    const stepDuration = duration / steps;
-    let currentStep = 0;
+    const startVolume = audioElement.volume;
+    const steps = 50;
+    const stepDuration = duration / steps;
+    let currentStep = 0;
 
-    const fadeInterval = setInterval(() => {
-        currentStep++;
-        audioElement.volume = startVolume - (currentStep * startVolume / steps);
+    const fadeInterval = setInterval(() => {
+        currentStep++;
+        audioElement.volume = startVolume - (currentStep * startVolume / steps);
 
-        if (currentStep >= steps) {
-            clearInterval(fadeInterval);
-            audioElement.pause();
-            audioElement.volume = startVolume; 
-        }
-    }, stepDuration);
+        if (currentStep >= steps) {
+            clearInterval(fadeInterval);
+            audioElement.pause();
+            audioElement.volume = startVolume; 
+        }
+    }, stepDuration);
 }
-
-// Fungsi untuk membuat musik memudar masuk (fade in)
-function fadeInMusic(audioElement, startVolume = 0.05, maxVolume = 0.5, duration = 1500) {
-    audioElement.volume = startVolume;
-    
-    // Kunci untuk Autoplay: Pastikan audio dimainkan dari interaksi user
-    audioElement.play().then(() => {
-        const steps = 50;
-        const volumeStep = (maxVolume - startVolume) / steps;
-        const stepDuration = duration / steps;
-        let currentVolume = startVolume;
-
-        const fadeInterval = setInterval(() => {
-            currentVolume += volumeStep;
-            if (currentVolume >= maxVolume) {
-                currentVolume = maxVolume;
-                clearInterval(fadeInterval);
-            }
-            audioElement.volume = currentVolume;
-        }, stepDuration);
-    }).catch(error => {
-        console.warn("Autoplay/FadeIn Gagal, pastikan ada interaksi user sebelumnya.");
-        // Coba set volume max jika gagal fade in
-        audioElement.volume = maxVolume;
-    });
-}
-
-
-// Fungsi untuk navigasi antar halaman
-function goToPage(pageId) {
-    const pages = document.querySelectorAll('.page-container');
-    
-    pages.forEach(page => {
-        page.classList.remove('active');
-        page.style.overflowY = 'hidden'; 
-    });
-
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-        targetPage.style.overflowY = 'auto'; 
-        document.body.style.overflow = 'hidden';
-
-        if (pageId === 'page2') {
-            document.getElementById('page2-greeting').innerText = `Hai ${recipientName}!`;
-        }
-        
-        if (pageId === 'page4') {
-            document.getElementById('recipientNameDisplay').innerText = recipientName;
-            
-            // ----------------------------------------------------------------
-            // LOGIKA PENTING UNTUK PAGE 4 (MUSIK & ANIMASI KETIK)
-            // ----------------------------------------------------------------
-            
-            // 1. Musik Ulang Tahun
-            // Buat objek Audio baru SETIAP KALI agar bisa di-play
-            if (!window.currentSpecialMusic) {
-                 window.currentSpecialMusic = new Audio('Birthdayy.mp3'); 
-                 window.currentSpecialMusic.loop = true;
-            }
-            fadeInMusic(window.currentSpecialMusic, 0.05, 0.5, 2000); 
-            
-            
-            // 2. Reset dan Mulai Animasi Ketik
-            const typingTarget = document.getElementById('typing-text-target');
-            const signatureBox = document.getElementById('signature-box');
-            
-            // Bersihkan konten sebelumnya dan reset state
-            typingTarget.innerHTML = '';
-            typingTarget.classList.remove('finished-typing');
-            if (signatureBox) signatureBox.style.opacity = '0';
-            
-            // Mulai animasi ketik setelah delay (setelah foto-foto muncul)
-            setTimeout(() => {
-                // Tambahkan 1 paragraf kosong awal
-                typingTarget.innerHTML = '<p></p>'; 
-                typeMessage(birthdayMessage, typingTarget);
-            }, 3500); // Mulai ketik setelah 3.5 detik (setelah foto-foto selesai dianimasikan)
-
-        } else {
-            // Pastikan musik ulang tahun mati saat pindah dari Page 4
-            if (window.currentSpecialMusic && !window.currentSpecialMusic.paused) {
-                window.currentSpecialMusic.pause();
-            }
-        }
-        
-        targetPage.scrollTop = 0;
-    }
-}
-
-// Halaman 1: Memproses Nama
-function goToPage2() {
-    const input = document.getElementById('recipientName');
-    recipientName = input.value.trim().toUpperCase();
-
-    if (recipientName === "") {
-        alert("Nama tidak boleh kosong, ya!");
-        return;
-    }
-
-    // Mainkan background music saat halaman 2 dibuka
-    const music = document.getElementById('backgroundMusic');
-    if (music.paused) {
-        music.volume = 0.5;
-        // Panggil play.catch() untuk mengatasi masalah Autoplay
-        music.play().catch(error => {
-            console.log("Autoplay failed:", error);
-        });
-    }
-
-    goToPage('page2');
-}
-
-// Halaman 2 - Games 1
-function checkAnswer() {
-    const input = document.getElementById('riddle-answer-input');
-    const message = document.getElementById('riddle-message');
-    const answer = input.value.trim().toUpperCase();
-    
-    input.classList.remove('shake');
-    
-    if (answer === correctRiddleAnswer) {
-        message.innerText = "Yey! Betul banget! Ternyata Kamu Masih inget aku!";
-        message.style.color = '#333333';
-        document.getElementById('riddle-container').style.opacity = '0';
-        
-        setTimeout(() => {
-            document.getElementById('riddle-container').style.display = 'none';
-            // Pastikan container 2 muncul dengan benar
-            const container2 = document.getElementById('riddle-container-2');
-            container2.style.display = 'block';
-            container2.style.opacity = '1';
-        }, 500);
-
-    } else {
-        message.innerText = "Hmm, coba pikir lagi! Temen kamu dulu lohh tepatnya di Smm Haha! ";
-        message.style.color = '#ff69b4';
-        
-        input.classList.add('shake');
-        setTimeout(() => input.classList.remove('shake'), 500); 
-    }
-}
-
-// Halaman 2 - Games 2
-function checkAnswer2() {
-    const input = document.getElementById('riddle-answer-input-2');
-    const message = document.getElementById('riddle-message-2');
-    const answer = input.value.trim().toUpperCase();
-
-    input.classList.remove('shake');
-
-    if (answer === correctRiddleAnswer2) {
-        message.innerText = "Yeay Benar! Kamu Lanjut ke Tahap Terakhir!";
-        message.style.color = '#333333';
-        
-        setTimeout(() => {
-            goToPage('page3');
-        }, 1000);
-
-    } else {
-        message.innerText = "Kurang tepat! Coba ketik nama panggilan yang ulang tahun hari ini Siapa?";
-        message.style.color = '#ff69b4';
-
-        input.classList.add('shake');
-        setTimeout(() => input.classList.remove('shake'), 500); 
-    }
-}
-
-// Halaman 3: Membuka Kunci
-function checkLockCode() {
-    const dd = document.getElementById('key-input-dd').value.padStart(2, '0');
-    const mm = document.getElementById('key-input-mm').value.padStart(2, '0');
-    const yyyy = document.getElementById('key-input-yyyy').value;
-    const lockMessage = document.getElementById('lock-message');
-
-    const enteredCode = dd + mm + yyyy;
-
-    if (enteredCode === correctLockCode) {
-        lockMessage.innerText = "UNLOCKED! Selamat Ulang Tahun!!!";
-        lockMessage.style.color = '#ff69b4';
-
-        // FADE OUT MUSIK LAMA
-        const bgMusic = document.getElementById('backgroundMusic');
-        if (!bgMusic.paused) {
-            fadeOutMusic(bgMusic, 1200); 
-        }
-
-        setTimeout(() => {
-            goToPage('page4');
-        }, 1500);
-
-    } else {
-        lockMessage.innerText = "Salahh! Tanggal lahir siapa itu? ";
-        lockMessage.style.color = 'red';
-        document.querySelector('.lock-box').classList.add('lockshake');
-        setTimeout(() => document.querySelector('.lock-box').classList.remove('lockshake'), 500);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('#key-input-container input').forEach(input => {
-        input.addEventListener('input', function() {
-            this.value = this.value.replace(/[^0-9]/g, '');
-        });
-    });
-});
