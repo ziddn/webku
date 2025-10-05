@@ -38,7 +38,7 @@ body {
     line-height: 1.4; 
 }
 
-/* 🟢 LAYER BACKGROUND GAMBAR BARU (Di bawah semua) 🟢 */
+/* 🟢 LAYER BACKGROUND PALING BAWAH (HANYA WARNA SOLID) 🟢 */
 #background-layer {
     position: fixed; 
     top: 0;
@@ -59,12 +59,15 @@ body {
     transition: none;
 }
 
-/* OVERLAY GELAP ELEGAN (Dihapus/Dinonaktifkan) */
-body::before { display: none; }
+/* 🟢 FIX: FOTO DI HALAMAN 1 (PHOTO-BOX) DIHILANGKAN AGAR TIDAK MENGGANGGU TAMPILAN AWAL 🟢 */
+.photo-box { 
+    display: none !important; 
+    opacity: 0 !important;
+    position: absolute;
+    z-index: -1;
+}
 
-
-/* Partikel SPARKLE PINK */
-.falling-decoration, .falling-heart, .photo-box { display: none !important; }
+/* SPARKLE ANIMATION */
 .sparkle { 
     position: absolute;
     width: 5px; 
@@ -263,6 +266,7 @@ input[type="text"]:focus, select:focus {
     max-width: 600px; 
     margin: 0 auto;
     text-align: center; 
+    padding-top: 50px; /* Tambahkan padding agar judul tidak terlalu mepet ke atas */
 }
 
 
@@ -392,6 +396,24 @@ input[type="text"]:focus, select:focus {
     font-size: 1.1em; 
 }
 
+/* --- KOTAK RIDDLE/QUIZ STAGE 1 (TAMBAHAN GAYA) --- */
+/* Agar tahap 1 dan 2 memiliki kotak yang sama */
+#riddle-container > .fancy-riddle-box {
+    border: 3px solid #ff69b4; 
+    border-radius: 15px; 
+    padding: 25px;
+    margin-top: 20px;
+    background-color: #ffffff; 
+    background-image: none !important; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+                0 0 0 8px #ffc0cb; 
+    color: #333333;
+    text-shadow: none; 
+    animation: fadeInScale 0.5s ease-out forwards;
+}
+/* --- END TAMBAHAN GAYA --- */
+
+
 /* ==================================== */ 
 /* HALAMAN 4 (PESAN & FOTO) */
 /* ==================================== */ 
@@ -426,16 +448,15 @@ input[type="text"]:focus, select:focus {
 }
 
 
-/* FIX SPESIFIK FOTO 2 dan 3: Fokuskan ke bagian ATAS (wajah) */
-.display-photo.photo-2,
+/* FIX SPESIFIK FOTO (Atur jika diperlukan, jika tidak biarkan 'center') */
+/* .display-photo.photo-2,
 .display-photo.photo-3 {
     object-position: top center; 
 }
 
-/* Foto 1 (LA.jpg) dibuat standar center, karena sebelumnya sudah benar */
 .display-photo.photo-1 {
     object-position: center;
-}
+} */
 
 
 @keyframes zoomInRotate { 
@@ -584,20 +605,6 @@ input[type="text"]:focus, select:focus {
     font-size: 1em;
 }
 
-/* --- TAMPILAN KHUSUS UNTUK TEKA-TEKI KEDUA (Fancy Box) --- */
-.fancy-riddle-box {
-    border: 3px solid #ff69b4; 
-    border-radius: 15px; 
-    padding: 25px;
-    margin-top: 20px;
-    background-color: #ffffff; 
-    background-image: none !important; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
-                0 0 0 8px #ffc0cb; 
-    color: #333333;
-    text-shadow: none; 
-    animation: fadeInScale 0.5s ease-out forwards;
-}
 
 @keyframes fadeInScale {
     from {
