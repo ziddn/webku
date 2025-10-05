@@ -6,7 +6,7 @@ const correctRiddleAnswer2 = "LAYA";
 // GANTI INI: Tanggal lahir yang benar (DDMMYYYY)
 const correctLockCode = "10012006"; 
 
-// Pesan Ulang Tahun yang akan diketik
+// Pesan Ulang Tahun yang akan diketik (TIDAK ADA PERUBAHAN TEKS)
 const birthdayMessage = [
     // Paragraf 1
     "Aku tahu hari ini adalah hari yang sangat spesial untukmu. Walaupun kita mungkin sudah lama tidak bertemu, aku ingin kamu tahu bahwa aku tidak pernah melupakan momen persahabatan kita di masa lalu.",
