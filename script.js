@@ -25,13 +25,10 @@ const birthdayMessage = [
 
 function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
     
-    // Periksa apakah sudah selesai mengetik semua paragraf
     if (index >= messageArray.length) {
         targetElement.classList.add('finished-typing'); // Hapus kursor terakhir via CSS
         
-        // Tampilkan Tanda Tangan setelah pesan selesai diketik
         const signatureBox = document.getElementById('signature-box');
-        // Jeda sebentar sebelum menampilkan tanda tangan
         setTimeout(() => {
              if (signatureBox) signatureBox.style.opacity = '1';
         }, 500);
@@ -40,14 +37,11 @@ function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
 
     let currentP = targetElement.querySelector('p:last-of-type');
     
-    // Jika baru mulai paragraf baru (atau ini adalah paragraf pertama)
     if (charIndex === 0) {
-        // Hapus kursor dari paragraf sebelumnya
         if (currentP) {
             currentP.classList.remove('typing-active'); 
         }
         
-        // Buat elemen p baru dan tambahkan kelas kursor aktif
         const newP = document.createElement('p');
         newP.classList.add('typing-active'); 
         targetElement.appendChild(newP);
@@ -56,17 +50,13 @@ function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
 
     const textToType = messageArray[index];
     
-    // Ketik satu karakter
     if (charIndex < textToType.length) {
         currentP.textContent += textToType.charAt(charIndex);
         charIndex++;
-        // Kecepatan mengetik: 60ms/karakter
         setTimeout(() => typeMessage(messageArray, targetElement, index, charIndex), 60); 
     } else {
-        // Selesai satu paragraf, mulai paragraf berikutnya
         index++;
         charIndex = 0;
-        // Jeda antar paragraf: 800ms
         setTimeout(() => typeMessage(messageArray, targetElement, index, charIndex), 800); 
     }
 }
@@ -76,7 +66,6 @@ function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
 // FUNGSI AUDIO (FADE IN/OUT)
 // =========================================================
 
-// Fungsi untuk membuat musik memudar (fade out)
 function fadeOutMusic(audioElement, duration = 1000) {
     const startVolume = audioElement.volume;
     const steps = 50;
@@ -95,11 +84,9 @@ function fadeOutMusic(audioElement, duration = 1000) {
     }, stepDuration);
 }
 
-// Fungsi untuk membuat musik memudar masuk (fade in)
 function fadeInMusic(audioElement, startVolume = 0.05, maxVolume = 0.5, duration = 1500) {
     audioElement.volume = startVolume;
     
-    // Kunci untuk Autoplay: Pastikan audio dimainkan dari interaksi user
     audioElement.play().then(() => {
         const steps = 50;
         const volumeStep = (maxVolume - startVolume) / steps;
@@ -116,7 +103,6 @@ function fadeInMusic(audioElement, startVolume = 0.05, maxVolume = 0.5, duration
         }, stepDuration);
     }).catch(error => {
         console.warn("Autoplay/FadeIn Gagal, mencoba play ulang.");
-        // Coba set volume max jika gagal fade in (Biasanya karena browser blokir)
         audioElement.volume = maxVolume;
         audioElement.play().catch(e => console.error("Play gagal lagi:", e));
     });
@@ -127,11 +113,9 @@ function fadeInMusic(audioElement, startVolume = 0.05, maxVolume = 0.5, duration
 // FUNGSI NAVIGASI
 // =========================================================
 
-// Fungsi untuk navigasi antar halaman
 function goToPage(pageId) {
     const pages = document.querySelectorAll('.page-container');
     
-    // Matikan semua halaman
     pages.forEach(page => {
         page.classList.remove('active');
         page.style.overflowY = 'hidden'; 
@@ -139,7 +123,6 @@ function goToPage(pageId) {
 
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
-        // Aktifkan halaman target
         targetPage.classList.add('active');
         targetPage.style.overflowY = 'auto'; 
         document.body.style.overflow = 'hidden';
@@ -151,16 +134,10 @@ function goToPage(pageId) {
         if (pageId === 'page4') {
             document.getElementById('recipientNameDisplay').innerText = recipientName;
             
-            // ----------------------------------------------------------------
-            // LOGIKA PENTING UNTUK PAGE 4 (MUSIK & ANIMASI KETIK)
-            // ----------------------------------------------------------------
-            
             // 1. Musik Ulang Tahun
-            const birthdaySong = document.getElementById('birthdaySong'); // Ambil elemen audio BirthdaySong.mp3
-            
+            const birthdaySong = document.getElementById('birthdaySong'); 
             if (birthdaySong) {
                  birthdaySong.loop = true;
-                 // Gunakan FadeInMusic
                  fadeInMusic(birthdaySong, 0.05, 0.5, 2000); 
             }
             
@@ -168,15 +145,11 @@ function goToPage(pageId) {
             const typingTarget = document.getElementById('typing-text-target');
             const signatureBox = document.getElementById('signature-box');
             
-            // Bersihkan konten sebelumnya dan reset state
             typingTarget.innerHTML = '';
             typingTarget.classList.remove('finished-typing');
             if (signatureBox) signatureBox.style.opacity = '0';
             
-            // Mulai animasi ketik setelah delay (setelah foto-foto muncul)
-            // Foto selesai di 2.4s + 1s untuk memastikan = 3.4s. Kita pakai 3500ms.
             setTimeout(() => {
-                // Hapus paragraf kosong yang mungkin ada dan pastikan mulai mengetik
                 typingTarget.innerHTML = ''; 
                 typeMessage(birthdayMessage, typingTarget);
             }, 3500); 
@@ -208,7 +181,6 @@ window.goToPage2 = function() {
     const music = document.getElementById('backgroundMusic');
     if (music.paused) {
         music.volume = 0.5;
-        // Panggil play.catch() untuk mengatasi masalah Autoplay
         music.play().catch(error => {
             console.warn("Autoplay failed:", error);
         });
@@ -222,7 +194,7 @@ window.goToPage2 = function() {
 // =========================================================
 
 // Halaman 2 - Games 1
-window.checkAnswer1 = function() { // Diubah dari checkAnswer menjadi checkAnswer1 agar konsisten dengan HTML
+window.checkAnswer1 = function() {
     const input = document.getElementById('riddle-answer-input');
     const message = document.getElementById('riddle-message');
     const answer = input.value.trim().toUpperCase();
@@ -236,15 +208,16 @@ window.checkAnswer1 = function() { // Diubah dari checkAnswer menjadi checkAnswe
         input.disabled = true;
         document.getElementById('answer-button').disabled = true;
         
+        // Sembunyikan Riddle 1 dan Tampilkan Riddle 2
         document.getElementById('riddle-container').style.opacity = '0';
         
         setTimeout(() => {
             document.getElementById('riddle-container').style.display = 'none';
-            // Pastikan container 2 muncul dengan benar dan memicu animasi masuk
+            // Tampilkan container 2
             const container2 = document.getElementById('riddle-container-2');
             container2.style.display = 'block';
             container2.style.opacity = '1';
-            // PENTING: Trigger animasi bounceInUp
+            // PENTING: Trigger animasi bounceInUp untuk Riddle 2
             container2.style.animation = 'none'; 
             void container2.offsetWidth; 
             container2.style.animation = 'bounceInUp 1.5s ease-out forwards'; 
@@ -273,8 +246,8 @@ window.checkAnswer2 = function() {
         input.disabled = true;
         document.getElementById('answer-button-2').disabled = true;
 
-        // Fade out Riddle 2
-        document.getElementById('riddle-container-2').style.opacity = '0';
+        // Fade out seluruh Secret Container (Riddle Main Container)
+        document.getElementById('riddle-main-container').style.opacity = '0';
         
         setTimeout(() => {
             goToPage('page3');
@@ -335,7 +308,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Perbaikan: Tambahkan event listener untuk tombol Riddle 1 & 2 (jika menggunakan onclick di HTML)
-    document.getElementById('answer-button').onclick = checkAnswer1;
-    document.getElementById('answer-button-2').onclick = checkAnswer2;
+    // Inisialisasi on-click listeners (dijaga untuk berjaga-jaga)
+    const button1 = document.getElementById('answer-button');
+    if (button1) button1.onclick = checkAnswer1;
+    
+    const button2 = document.getElementById('answer-button-2');
+    if (button2) button2.onclick = checkAnswer2;
 });
