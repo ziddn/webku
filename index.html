@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FOR U &lt;3</title>
+    <title>FOR U <3</title>
     <link rel="stylesheet" href="style.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Passion+One:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
@@ -36,11 +36,6 @@
     <div class="sparkle" style="--d: 13.5s; --l: 98%;"></div>
     
     <div id="page1" class="page-container active">
-        
-        <img class="photo-box" id="p1-photo1" src="L.jpg" alt="Foto Kenangan 1">
-        <img class="photo-box" id="p1-photo2" src="LA.jpg" alt="Foto Kenangan 2">
-        <img class="photo-box" id="p1-photo3" src="LAY.jpg" alt="Foto Kenangan 3">
-
         <div class="main-content-p1">
             <h1>Happy Birthdayy Yaa!</h1> 
             
@@ -51,7 +46,7 @@
             </p>
             
             <p class="framed-text">Tulis Nama kamu Dibawah ini Ya:</p>
-            <input type="text" id="recipientName" placeholder="Tulis namamu di sini..."> 
+            <input type="text" id="recipientName" placeholder="Tulis namamu di sini..." maxlength="15"> 
             <button onclick="goToPage2()">Lanjutkan</button>
         </div>
     </div>
@@ -62,26 +57,28 @@
         <div class="secret-container">
             <div id="riddle-container">
                 <p class="riddle-intro-text">Sebagai ice breaker, Aku ada sedikit Games ringan untuk kamu. Tapi Gampang koo.</p>
-                <p id="riddle-text">
-                    Games:<br>
-                    Ada 5 huruf yang Dulu Sekelas Sama kamu di Smm Bogor, huruf pertama adalah nama depannya, Z huruf terakhirnya adalah N. Siapakah aku?
-                </p>
+                <div class="fancy-riddle-box">
+                    <p id="riddle-text">
+                        Games:<br>
+                        Ada 5 huruf yang Dulu Sekelas Sama kamu di Smm Bogor, huruf pertama adalah Z, huruf terakhirnya adalah N. Siapakah aku?
+                    </p>
 
-                <input type="text" id="riddle-answer-input" placeholder="Tulis Jawabannya di sini " onkeyup="if (event.keyCode === 13) checkAnswer()">
-                
-                <p id="riddle-message"></p>
+                    <input type="text" id="riddle-answer-input" placeholder="Tulis Jawabannya di sini " onkeyup="if (event.keyCode === 13) checkAnswer()" maxlength="10">
+                    
+                    <p id="riddle-message" style="color: #333333; font-weight: bold;"></p>
 
-                <button class="secret-button" id="answer-button" onclick="checkAnswer()">Konfirmasi Jawaban</button> 
+                    <button class="secret-button" id="answer-button" onclick="checkAnswer()">Konfirmasi Jawaban</button> 
+                </div>
             </div>
             
-            <div id="riddle-container-2" class="fancy-riddle-box" style="display: none;">
+            <div id="riddle-container-2" class="fancy-riddle-box" style="display: none; opacity: 0; margin-top: 15px;">
                 <p class="riddle-intro-text" style="font-weight: bold;">Tahap 2: Ini mudah, cuma 4 huruf!</p>
                 <p id="riddle-text-2">
                     Kata Kunci:<br>
                     Siapa orang yang ulang tahun hari ini? Tulis nama panggilannya.
                 </p>
-                <input type="text" id="riddle-answer-input-2" placeholder="Tulis di sin (4 Huruf)" onkeyup="if (event.keyCode === 13) checkAnswer2()">
-                <p id="riddle-message-2"></p>
+                <input type="text" id="riddle-answer-input-2" placeholder="Tulis di sin (4 Huruf)" onkeyup="if (event.keyCode === 13) checkAnswer2()" maxlength="10">
+                <p id="riddle-message-2" style="color: #333333; font-weight: bold;"></p>
                 <button class="secret-button" id="answer-button-2" onclick="checkAnswer2()">Konfirmasi Jawaban Kata Kunci</button>
             </div>
         </div>
@@ -93,14 +90,14 @@
         <div class="lock-box">
             <div id="lock-icon">🔒</div> 
             
-            <p class="instruction-text">Untuk membuka kunci ke halaman utama, silakan masukkan tanggal lahir kamu Dulu Yah.</p> 
+            <p class="instruction-text">Untuk membuka kunci ke halaman utama, silakan masukkan tanggal lahir kamu Dulu Yah **(DDMMYYYY)**.</p> 
             <div id="key-input-container">
                 <input type="text" id="key-input-dd" placeholder="Tgl" inputmode="numeric" pattern="[0-9]*" maxlength="2"> 
                 <input type="text" id="key-input-mm" placeholder="Bln" inputmode="numeric" pattern="[0-9]*" maxlength="2">
                 <input type="text" id="key-input-yyyy" placeholder="Tahun" inputmode="numeric" pattern="[0-9]*" maxlength="4">
             </div>
             
-            <p id="lock-message" style="color: #ff69b4; font-weight: bold; margin-top: 15px;"></p>
+            <p id="lock-message" style="color: #333333; font-weight: bold; margin-top: 15px;"></p>
             
             <button type="button" onclick="checkLockCode()">UNLOCK</button> 
         </div>
@@ -112,17 +109,17 @@
 
         
         <div class="photo-display-container">
-            <img class="display-photo photo-1" src="LA.jpg" alt="Foto Spesial 1">
-            <img class="display-photo photo-2" src="LAY.jpg" alt="Foto Spesial 2">
-            <img class="display-photo photo-3" src="L.jpg" alt="Foto Spesial 3">
+            <img class="display-photo photo-1" src="Screenshot (1052).jpg" alt="Foto Spesial 1">
+            <img class="display-photo photo-2" src="Screenshot (1053).jpg" alt="Foto Spesial 2">
+            <img class="display-photo photo-3" src="Screenshot (1054).jpg" alt="Foto Spesial 3">
         </div>
 
         <div class="message-box">
             <div id="typing-text-target"></div>
             
-            <div class="signature" id="signature-box">
+            <p class="signature" id="signature-box">
                 Dari Aku, <span id="signature-name">Teman Lamamu.</span> 
-            </div>
+            </p>
         </div>
     </div>
 
