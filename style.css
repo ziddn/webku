@@ -48,7 +48,8 @@ body {
     /* 💥 PERBAIKAN KRUSIAL: HANYA MENGGUNAKAN L.jpg */
     background-image: url('L.jpg'); 
     background-size: cover; /* Pastikan menutupi seluruh layar */
-    background-position: center; 
+    /* 🟢 FIX BACKGROUND: Atur fokus agar wajah terlihat di tengah (default) */
+    background-position: center center; 
     background-repeat: no-repeat; 
     background-attachment: fixed; /* Penting untuk stabilitas di HP */
     background-color: #f0f8ff; 
@@ -144,7 +145,7 @@ body::before { display: none; }
 #page5 h1 { 
     opacity: 0; 
     animation: fadeInTitle 2s ease-out forwards; 
-    animation-delay: 1.2s; 
+    animation-delay: 0.2s; /* Dibuat cepat agar foto bisa dikejar */
     font-weight: 700;
 }
 
@@ -225,8 +226,8 @@ input[type="text"]:focus, select:focus {
     border-radius: 12px; 
     box-shadow: 0 0 0 4px #ffc0cb, 0 0 25px rgba(0, 0, 0, 0.4); 
     opacity: 0;
-    /* Animasi akan diatur via JS agar lebih terkontrol */
-    animation: none; /* Dihapus dari CSS agar diatur di JS */
+    /* Animasi diatur via JS */
+    animation: none; 
     font-family: 'Quicksand', sans-serif; 
     color: #333;
     max-width: 600px; 
@@ -330,7 +331,7 @@ input[type="text"]:focus, select:focus {
 }
 
 
-/* 🟢 PERUBAHAN: GAYA PITA PADA RIDDLE BOX 🟢 */
+/* 🟢 GAYA PITA PADA RIDDLE BOX 🟢 */
 .fancy-riddle-box {
     border: 3px solid #ff69b4; 
     border-radius: 15px; 
@@ -430,6 +431,7 @@ input[type="text"]:focus, select:focus {
     border: 7px solid #ffffff; 
     
     opacity: 0; 
+    /* 🟢 FIX FOTO: Animasi dimulai lebih cepat (0.5s) */
     animation: zoomInRotate 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
     
     object-position: center; 
@@ -443,9 +445,9 @@ input[type="text"]:focus, select:focus {
 }
 
 /* Mempercepat animasi foto */
-.display-photo:nth-child(1) { animation-delay: 2.0s; } 
-.display-photo:nth-child(2) { animation-delay: 2.2s; }
-.display-photo:nth-child(3) { animation-delay: 2.4s; }
+.display-photo:nth-child(1) { animation-delay: 0.5s; } 
+.display-photo:nth-child(2) { animation-delay: 0.7s; }
+.display-photo:nth-child(3) { animation-delay: 0.9s; }
 
 
 /* KOTAK UCAPAN: RAPIH DAN CLEAN  */
@@ -470,7 +472,8 @@ input[type="text"]:focus, select:focus {
     z-index: 100; 
     opacity: 0; 
     animation: fadeIn 1.2s ease-out forwards; 
-    animation-delay: 3.0s; 
+    /* 🟢 FIX FOTO: Animasi pesan disesuaikan setelah foto selesai (1.5s) */
+    animation-delay: 1.5s; 
     
     line-height: 1.5; 
     color: #333333 !important; 
