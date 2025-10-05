@@ -1,9 +1,9 @@
 let recipientName = "";
-// Jawab teka-teki tahap 1: ZIDAN
+// GANTI INI: Jawaban teka-teki tahap 1 (ZIDAN)
 const correctRiddleAnswer = "ZIDAN";
-// Jawab teka-teki tahap 2: LAY
+// GANTI INI: Jawaban teka-teki tahap 2 (LAYA)
 const correctRiddleAnswer2 = "LAYA";
-// Ganti dengan tanggal lahir yang benar (DDMMYYYY)
+// GANTI INI: Tanggal lahir yang benar (DDMMYYYY)
 const correctLockCode = "10012006"; 
 
 // Pesan Ulang Tahun yang akan diketik
@@ -63,8 +63,11 @@ function goToPage2() {
     document.getElementById('page2-greeting').textContent = `Hai ${recipientName}!`;
     changePage('page1', 'page2');
     // Animasikan container teka-teki 1 agar muncul
-    document.querySelector('#riddle-container .fancy-riddle-box').style.opacity = '1';
-    document.querySelector('#riddle-container .fancy-riddle-box').style.animationDelay = '0s';
+    const riddleContainer1 = document.querySelector('#riddle-container .fancy-riddle-box');
+    if (riddleContainer1) {
+        riddleContainer1.style.opacity = '1';
+        riddleContainer1.style.animationDelay = '0s';
+    }
 
 }
 
@@ -73,7 +76,7 @@ function goToPage3() {
 }
 
 function goToPage4() {
-    // Fade out musik sebelum menampilkan halaman 4 (opsional)
+    // Fade out musik sebelum menampilkan halaman 4
     const music = document.getElementById('backgroundMusic');
     if (music) fadeOutMusic(music, 1500);
 
@@ -125,9 +128,8 @@ function checkAnswer() {
 function checkAnswer2() {
     const input = document.getElementById('riddle-answer-input-2');
     const message = document.getElementById('riddle-message-2');
-    // Gunakan nama yang diinput di halaman 1, jika user mengisi 'Laya' di halaman 1
-    // Atau gunakan jawaban default 'LAYA' jika kita ingin jawaban default
-    const expectedAnswer = recipientName || correctRiddleAnswer2; 
+    // Menggunakan jawaban default 'LAYA'
+    const expectedAnswer = correctRiddleAnswer2; 
     const answer = input.value.toUpperCase().trim();
     
     message.style.color = '#ff69b4';
@@ -141,7 +143,7 @@ function checkAnswer2() {
         setTimeout(goToPage3, 1500);
 
     } else {
-        message.textContent = `SALAH! Ingat nama panggilanmu sendiri! Petunjuk: ${expectedAnswer.charAt(0)}...`;
+        message.textContent = `SALAH! Ingat nama panggilanmu sendiri! Petunjuk: ${expectedAnswer.charAt(0)}... (4 Huruf)`;
         input.value = "";
     }
 }
@@ -166,9 +168,10 @@ function checkLockCode() {
 
     } else {
         message.textContent = "KODE SALAH! Tanggal lahirmu (DDMMYYYY) mana? Coba lagi! ❌";
-        document.querySelector('.lock-box').style.animation = 'lockshake 0.5s';
+        const lockBox = document.querySelector('.lock-box');
+        lockBox.style.animation = 'lockshake 0.5s';
         setTimeout(() => {
-            document.querySelector('.lock-box').style.animation = 'none';
+            lockBox.style.animation = 'none';
         }, 500);
     }
 }
@@ -180,9 +183,8 @@ function checkLockCode() {
 
 function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
     
-    // Periksa apakah sudah selesai mengetik semua paragraf
     if (index >= messageArray.length) {
-        targetElement.classList.add('finished-typing'); // Hapus kursor terakhir via CSS
+        targetElement.classList.add('finished-typing');
         
         // Tampilkan Tanda Tangan setelah pesan selesai diketik
         const signatureBox = document.getElementById('signature-box');
@@ -192,14 +194,11 @@ function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
 
     let currentP = targetElement.querySelector('p:last-of-type');
     
-    // Jika baru mulai paragraf baru (atau ini adalah paragraf pertama)
     if (charIndex === 0) {
-        // Hapus kursor dari paragraf sebelumnya
         if (currentP) {
             currentP.classList.remove('typing-active'); 
         }
         
-        // Buat elemen p baru dan tambahkan kelas kursor aktif
         const newP = document.createElement('p');
         newP.classList.add('typing-active'); 
         targetElement.appendChild(newP);
@@ -208,14 +207,13 @@ function typeMessage(messageArray, targetElement, index = 0, charIndex = 0) {
 
     const textToType = messageArray[index];
     
-    // Ketik satu karakter
     if (charIndex < textToType.length) {
         currentP.textContent += textToType.charAt(charIndex);
         charIndex++;
         // Kecepatan mengetik: 60ms/karakter
         setTimeout(() => typeMessage(messageArray, targetElement, index, charIndex), 60); 
     } else {
-        // Selesai satu paragraf, mulai paragraf berikutnya
+        // Selesai satu paragraf
         index++;
         charIndex = 0;
         // Jeda antar paragraf: 800ms
