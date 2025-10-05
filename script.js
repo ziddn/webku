@@ -36,7 +36,7 @@ function changePage(fromPageId, toPageId, delay = 0) {
             void toPage.offsetWidth; 
             toPage.classList.add('active');
             
-            // 💥 PERBAIKAN: Aktifkan animasi content-box setelah pindah halaman
+            // Aktifkan animasi content-box setelah pindah halaman
             const contentBox = toPage.querySelector('.content-box');
             if (contentBox) {
                  contentBox.style.animation = 'bounceInUp 1.5s ease-out forwards'; 
@@ -65,18 +65,21 @@ function goToPage2() {
     changePage('page1', 'page2');
 }
 
+// Navigasi ke Halaman 3 (Riddle 2)
 function goToPage3() {
     // Navigasi dari Riddle 1 (Page 2) ke Riddle 2 (Page 3)
     changePage('page2', 'page3');
 }
 
+// Navigasi ke Halaman 4 (Lock Code)
 function goToPage4() {
     // Navigasi dari Riddle 2 (Page 3) ke Lock Code (Page 4)
     changePage('page3', 'page4');
 }
 
+// Navigasi ke Halaman 5 (Akhir)
 function goToPage5() {
-    // 💥 PERBAIKAN: Musik TIDAK di-fade out di sini. Musik akan terus berlanjut.
+    // Musik TIDAK di-fade out di sini. Musik akan terus berlanjut.
     
     // Tampilkan nama di halaman 5
     document.getElementById('recipientNameDisplay').textContent = recipientName;
@@ -110,7 +113,7 @@ function checkAnswer1() {
         input.disabled = true;
         document.getElementById('answer-button').disabled = true;
         
-        // Lanjut ke Halaman 3 (Riddle 2)
+        // 💥 PERBAIKAN KRUSIAL: Lanjut ke Halaman 3 (Riddle 2)
         setTimeout(goToPage3, 1500);
 
     } else {
