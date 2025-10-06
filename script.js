@@ -16,7 +16,7 @@ function goToPage(pageId) {
     
     pages.forEach(page => {
         page.classList.remove('active');
-        page.style.overflowY = 'hidden'; 
+        //page.style.overflowY = 'hidden'; 
         page.style.transform = 'rotateY(-90deg)';
         page.style.opacity = '0';
     });
@@ -35,7 +35,7 @@ function goToPage(pageId) {
     if (targetPage) {
         targetPage.classList.add('active');
         targetPage.style.overflowY = 'auto'; 
-        document.body.style.overflow = 'hidden';
+        //document.body.style.overflow = 'hidden';
 
         if (pageId === 'page2') {
             document.getElementById('page2-greeting').innerText = `Hai ${recipientName}!`; 
