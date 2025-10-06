@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOR U &lt;3</title>
+    <link rel="stylesheet" href="style.css"> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Passion+One:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="background-layer"></div>
+    
+    <audio id="backgroundMusic" loop src="Beaniee.mp3"></audio>
+    <audio id="birthdaySong" src="Birthdayy.mp3" loop></audio> 
+
+    <div class="sparkle" style="--d: 8s; --l: 5%;"></div>
+    <div class="sparkle" style="--d: 12s; --l: 10%;"></div>
+    <div class="sparkle" style="--d: 7s; --l: 15%;"></div>
+    <div class="sparkle" style="--d: 15s; --l: 20%;"></div>
+    <div class="sparkle" style="--d: 10s; --l: 25%;"></div>
+    <div class="sparkle" style="--d: 11s; --l: 30%;"></div>
+    <div class="sparkle" style="--d: 6s; --l: 35%;"></div>
+    <div class="sparkle" style="--d: 13s; --l: 40%;"></div>
+    <div class="sparkle" style="--d: 9s; --l: 45%;"></div>
+    <div class="sparkle" style="--d: 14s; --l: 50%;"></div>
+    <div class="sparkle" style="--d: 5s; --l: 55%;"></div>
+    <div class="sparkle" style="--d: 16s; --l: 60%;"></div>
+    <div class="sparkle" style="--d: 10s; --l: 65%;"></div>
+    <div class="sparkle" style="--d: 8.5s; --l: 70%;"></div>
+    <div class="sparkle" style="--d: 7.5s; --l: 75%;"></div>
+    <div class="sparkle" style="--d: 11.5s; --l: 80%;"></div>
+    <div class="sparkle" style="--d: 6.5s; --l: 85%;"></div>
+    <div class="sparkle" style="--d: 12.5s; --l: 90%;"></div>
+    <div class="sparkle" style="--d: 9.5s; --l: 95%;"></div>
+    <div class="sparkle" style="--d: 13.5s; --l: 98%;"></div>
+    
+    <div id="page1" class="page-container active">
+        
+        <img class="photo-box" id="p1-photo1" src="L.jpg" alt="Foto Kenangan 1">
+        <img class="photo-box" id="p1-photo2" src="LA.jpg" alt="Foto Kenangan 2">
+        <img class="photo-box" id="p1-photo3" src="layA.jpg" alt="Foto Kenangan 3">
+
+        <div class="main-content-p1">
+            <h1>Surprise!</h1> 
+            
+            <p class="fancy-text-box">
+                Welcome yaa. Semoga Kamu Sukaa! 
+                <br>
+                sebelum lanjut, isi nama kamu dulu oke
+            </p>
+            
+            <p class="framed-text">Tulis Nama kamu Dibawah ini Ya:</p>
+            <input type="text" id="recipientName" placeholder="Tulis namamu di sini..."> 
+            <button onclick="goToPage2()">Lanjut</button>
+        </div>
+    </div>
+
+    <div id="page2" class="page-container">
+        <h1 id="page2-greeting"></h1> 
+
+        <div class="secret-container" id="riddle-main-container"> 
+            
+            <div id="riddle-container">
+                <p class="riddle-intro-text">Sebelum Lanjut Aku ada sedikit Quiz, Tapi Gampang koo </p>
+                <p id="riddle-text" class="fancy-riddle-box">
+                Quis nya:<br>
+                Ada Seseorang yang Dulu Sekelas Sama kamu di Musik 2 Dia anaknya Bu Riris pokonya, huruf pertamanya tuh Z nah huruf terakhirnya  N Siapa yaa?
+                </p>
+
+                <input type="text" id="riddle-answer-input" placeholder="Jawab Disini " onkeyup="if (event.keyCode === 13) checkAnswer1()">
+                
+                <p id="riddle-message"></p>
+
+                <button class="secret-button" id="answer-button" onclick="checkAnswer1()">Jawab</button> 
+            </div>
+            
+            <div id="riddle-container-2" style="display: none;">
+               <p class="riddle-intro-text">
+                     Nah sekarang Aku Mau Nanya Kalau misalnya kamu dikasih kesempatan Lagi nih buat milih kampus, kira-kira masih Mau milih UPI Atau Pindah ke IPB?
+                </p>
+                <p class="riddle-intro-text">
+                    Tulis Disini Aja Nama Kampusnya
+                </p>
+                <p id="riddle-text-2" class="fancy-riddle-box">
+                 Tulis Jawabannya Dibawah
+                </p>
+                <input type="text" id="riddle-answer-input-2" placeholder="Disini Ya" onkeyup="if (event.keyCode === 13) checkAnswer2()">
+                <p id="riddle-message-2"></p>
+                <button class="secret-button" id="answer-button-2" onclick="checkAnswer2()">Jawab</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="page3" class="page-container">
+        <h1>Terakhir</h1>
+        
+        <div class="lock-box">
+            <div id="lock-icon">🔒</div> 
+            
+            <p class="instruction-text">Untuk Lanjut Tolong masukkin tanggal lahir kamu Dulu Ya.</p> 
+            <div id="key-input-container">
+                <input type="text" id="key-input-dd" placeholder="Tgl" inputmode="numeric" pattern="[0-9]*" maxlength="2"> 
+                <input type="text" id="key-input-mm" placeholder="Bln" inputmode="numeric" pattern="[0-9]*" maxlength="2">
+                <input type="text" id="key-input-yyyy" placeholder="Tahun" inputmode="numeric" pattern="[0-9]*" maxlength="4">
+            </div>
+            
+            <p id="lock-message" style="color: #ff69b4; font-weight: bold; margin-top: 15px;"></p>
+            
+            <button type="button" onclick="checkLockCode()">BUKA</button> 
+        </div>
+    </div>
+    
+    <div id="page4" class="page-container"> 
+        
+        <h1 id="greeting" style="z-index: 1;">Happy Birthday, <span id="recipientNameDisplay"></span>!</h1> 
+
+        <div class="photo-display-container">
+            <img class="display-photo photo-1" src="LA.jpg" alt="Foto Spesial 1">
+            <img class="display-photo photo-2" src="lyy.jpg" alt="Foto Spesial 2">
+            <img class="display-photo photo-3" src="L.jpg" alt="Foto Spesial 3">
+        </div>
+
+        <div class="message-box">
+            <div id="typing-text-target"></div>
+            
+            <div class="signature" id="signature-box">
+                From <span id="signature-name">Zidanrz.</span> 
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
