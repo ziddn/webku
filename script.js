@@ -4,11 +4,11 @@ const correctRiddleAnswer2 = ["UPI", "IPB"];
 const correctLockCode = "10012006"; 
 const birthdayMessage = [
     "Selamat ulang tahun Laya Dwi Garini Yang Ke 20 Tahunn!,",
-    "Semoga di umur Kamu yang baru ini kamu makin Semangat ya ngejalanin hidup, makin pinter+makin cakep wkwk, dan gak gampang capek sama hal-hal receh.",
-    "Semoga rezekinya lancar, urusannya selalu dipermudah, dan hari-harimu selalu dikasih hal-hal kecil yang bikin senyum.",
-    "Jangan Stress-Stress Ya wkwk — yang penting kamu masih bisa Tersenyum dan menikmati hidup dengan cara kamu sendiri.",
+    "Semoga di umur Kamu yang baru ini kamu makin Semangat ya ngejalanin hidup,makin pinter+makin cakep wkwk,dan gak gampang capek sama hal-hal receh.",
+    "Semoga rezekinya lancar,urusannya selalu dipermudah,dan hari-harimu selalu dikasih hal-hal kecil yang bikin senyum.",
+    "Jangan Stress-Stress Ya wkwk yang penting kamu masih bisa Tersenyum dan menikmati hidup dengan cara kamu sendiri.",
     "Nikmatin hari bahagia kamu ini, makan enak, dan jangan lupa istirahat Jangan Cape-Cape. Kamu Berhak dapet hari Yang Spesial ini Dan pastinya Berhak Bahagia.",
-    "Terakhir Dari Aku Bahagiaa Ya di Bandung,Semangat Kuliahnyaa Jgn lupain Bogorr.And ENJOYY UR DAYY LAYY!!! "
+    "Terakhir Dari Aku Bahagiaa Ya Lay di Bandung,Semangat Kuliahnyaa Jgn lupain Bogorr.And ENJOYY UR DAYY LAYY!!! "
 ];
 
 function goToPage(pageId) {
