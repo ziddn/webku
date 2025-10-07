@@ -149,6 +149,7 @@ window.checkAnswer1 = function() {
                 
                 riddleContainer1.classList.add('fade-out'); 
             }
+                document.getElementById('page2-greeting').style.display = 'none'
             
             
             setTimeout(() => {
@@ -159,7 +160,7 @@ window.checkAnswer1 = function() {
                 
                 
                 if(container2) {
-                    container2.style.display = 'flex'; 
+                    container2.style.display = 'block'; 
                     container2.classList.add('fade-in-slide-up'); 
                 }
             }, 1000); 
