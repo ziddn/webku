@@ -11,11 +11,7 @@ html {
     min-height: 100vh;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    overflow-y: auto;
     Position: relative;
-    html, body {
-    overscroll-behavior-y: contain; 
-}
 }
 
 
@@ -26,8 +22,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    height: Auto; 
     margin: 0;
+    padding: 0;
+    height: 100vh; 
+    
     
     color: #ffffff; 
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 105, 180, 0.7); 
@@ -35,12 +33,12 @@ body {
     
     perspective: 1500px;
     position: relative;
-    overflow-y: visible !important; 
+    overflow-y: hidden!important; 
     overflow-x: hidden !important;
     line-height: 1.4; 
     background-image: url('layy.jpg'); 
     background-size: cover; 
-    background-position: center 40%;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed; 
     background-color: #f0f8ff; 
@@ -100,9 +98,8 @@ body {
     position: absolute; 
     top: 0;
     left: 0;
-    min-height: 100vh !important; 
-    height: auto !important; 
-    
+    height: 100% !important;
+    overflow-y: auto !important;
     background-color: rgba(0, 0, 0, 0.45); 
     background-image: none; 
 
@@ -112,8 +109,7 @@ body {
     z-index: 20; 
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transform: rotateY(-90deg); 
-    overflow-y: auto !important;
+    transform: rotateY(-90deg);
 }
 
 
@@ -122,7 +118,7 @@ body {
     justify-content: flex-start; 
     background-color: rgba(0, 0, 0, 0.45); 
     color: #ffffff; 
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 105, 180, 0.7);
+    text-shadow: 0 0 5px #ff69b4(0, 0, 0, 0.9), 0 0 10px rgba(255, 105, 180, 0.7);
 }
 
 .page-container.active {
@@ -174,7 +170,7 @@ button {
     width: 250px !important; 
     max-width: 90% !important;
     /* GANTI INI */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); 
+    box-shadow: 0 5px 20px #ff69b4(0, 0, 0, 0.5); 
     animation: pulseButton 1s infinite alternate; 
     text-transform: uppercase;
     font-family: 'Quicksand', sans-serif; 
@@ -186,7 +182,7 @@ button:hover {
     box-shadow: 0 5px 25px rgba(255, 105, 180, 0.7);
 }
 @keyframes pulseButton {
-    0% { box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); transform: scale(1); }
+    0% { box-shadow: 0 5px 20px #ff69b4(0, 0, 0, 0.5); transform: scale(1); }
     100% { box-shadow: 0 5px 30px rgba(255, 105, 180, 0.7); transform: scale(1.02); }
 }
 
@@ -237,7 +233,7 @@ input[type="text"],  select{
     border: 5px solid #ff69b4; 
     border-radius: 25px; 
     padding: 15px;
-    box-shadow: 0 0 0 5px #ffc0cb, 0 0 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 5px #ffc0cb;
     opacity: 0; /* JANGAN UBAH INI */
     animation: bounceInUp 0.8s ease-out forwards; 
     animation-delay: 0s;
@@ -268,7 +264,7 @@ input[type="text"],  select{
     border-left: 5px solid #ff69b4; 
     border-radius: 0; 
     background-color: #fffaf0; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 5px #ff69b4(0, 0, 0, 0.1); 
     text-shadow: none;
     margin-bottom: 8px; 
     text-align: left;
@@ -299,7 +295,7 @@ input[type="text"],  select{
     text-shadow: none !important;
     line-height: 1.2; 
     font-size: 1.15em;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 0 5px #ffc0cb; 
+    box-shadow: 0 4px 15px #ff69b4(0, 0, 0, 0.2), 0 0 0 5px #ffc0cb; 
 }
 
 
@@ -360,20 +356,21 @@ input[type="text"],  select{
     margin-right: 0px !important; 
     font-size: 1.15em; 
     font-weight: 600; 
-    background-color: transparent !important; 
-    color: #ffffff !important; 
-    text-shadow: 0 0 5px #010001; 
+    
+    /* 👇 PERBAIKAN FATAL START 👇 */
+    background-color: #ffffff !important; /* KRUSIAL: Putih Solid, bukan transparan */
+    color: #ff69b4 !important; /* Warna teks pink */
+    text-shadow: 0 0 3px #ffc0cb; /* Bayangan Teks: Ganti hitam dengan pink muda */
     padding: 10px 15px; 
+    box-shadow: 0 0 8px #ff69b4; /* Bayangan Kotak: Ganti RGBA error dengan pink glow */
+    /* 👆 PERBAIKAN FATAL END 👆 */
+
     margin: 15px auto; 
     margin-left: auto !important;
     margin-right: auto !important;
     max-width: 320px; 
     border-radius: 15px;
     border: 1px dashed rgba(255, 255, 255, 0.5); 
-    box-shadow: 0 0 5px rgba(255, 105, 180, 0.7); 
-    position: relative;
-    overflow: visible; 
-    text-transform: none !important; 
 }
 #riddle-container-2.fade-in {
     opacity: 1;
@@ -464,7 +461,7 @@ input[type="text"],  select{
     height: 220px; 
     object-fit: cover; 
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.945), 0 0 0 5px #ff69b4; 
+    box-shadow: 0 5px 20px #ff69b4(0, 0, 0, 0.945), 0 0 0 5px #ff69b4; 
     border: 7px solid #ffffff; 
     opacity: 0; 
     animation: zoomInRotate 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
@@ -499,7 +496,7 @@ input[type="text"],  select{
     font-size: 1.20em; 
     background: #fffaf0; 
     border: 8px double #ff69b4; 
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); 
+    box-shadow: 0 10px 40px #ff69b4(0, 0, 0, 0.6); 
     padding: 10px 40px; 
     border-radius: 15px; 
     max-width: 700px; 
@@ -611,7 +608,7 @@ input[type="text"],  select{
     margin-top: 20px;
     background-color: #ffffff; 
     background-image: none !important; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 0 0 8px #ffc0cb; 
+    box-shadow: none !important;
     color: #ff69b4;
     text-shadow: none; 
     animation: fadeInScale 0.5s ease-out forwards;
