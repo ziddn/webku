@@ -36,18 +36,10 @@ body {
     overflow-y: hidden!important; 
     overflow-x: hidden !important;
     line-height: 1.4; 
-    background-image: url('layy.jpg'); 
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; 
-    background-color: #f0f8ff; 
 }
 
-
-
 #background-layer {
-    position: none; 
+    position: fixed; 
     top: 0; 
     left: 0; 
     width: 100%; 
@@ -441,7 +433,7 @@ input[type="text"],  select{
 #key-input-container input {
     width: 80px; 
     padding: 10px;
-    font-size: 1.1em; 
+    font-size: 1.25em; 
 }
 
 .photo-display-container {
@@ -708,4 +700,20 @@ input[type="text"],  select{
     
     animation: zoomFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+.fade-in-slide-up {
+    animation: zoomFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+} /* <--- BARIS INI HARUS ADA UNTUK MENUTUP BLOK SEBELUMNYA */
+
+/* KODE MEDIA QUERY DIMULAI DI SINI (Sebagai blok mandiri, di luar blok CSS lain) */
+@media (max-width: 480px) {
+    /* Blok khusus untuk Input Tanggal Lahir agar seragam di HP */
+    #key-input-container input {
+        width: 70px !important; 
+        max-width: 70px !important;
+        padding: 8px !important;
+        font-size: 1.25em !important;
+    } 
+    /* Blok ini sekarang ditutup secara otomatis di baris akhir */
 }
