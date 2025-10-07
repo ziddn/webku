@@ -21,7 +21,7 @@ html {
 
 body {
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.1em; 
+    font-size: 1.0em; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,7 +169,11 @@ button {
     font-size: 1.4em; 
     font-weight: bold;
     transition: all 0.2s;
-    margin: 10px; 
+    /* GANTI INI */
+    margin: 10px auto; 
+    width: 250px !important; 
+    max-width: 90% !important;
+    /* GANTI INI */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5); 
     animation: pulseButton 1s infinite alternate; 
     text-transform: uppercase;
@@ -189,10 +193,8 @@ button:hover {
 input[type="text"], select {
     font-family: 'Quicksand', sans-serif; 
     padding: 12px; 
-    
     border: 3px dashed #ffc0cb !important; 
     border-radius: 10px !important; 
-    
     margin-bottom: 15px; 
     width: auto; 
     max-width: 320px;
@@ -205,7 +207,8 @@ input[type="text"], select {
     transition: all 0.3s ease;
     vertical-align: middle; 
 }
-input[type="text"]:focus, select:focus {
+input[type="text"],  select{
+    
     border-color: #ff69b4; 
     box-shadow: 0 0 0 4px #ffc0cb, 0 4px 15px rgba(255, 105, 180, 0.7);
     outline: none; 
@@ -231,34 +234,37 @@ input[type="text"]:focus, select:focus {
 
 .secret-container, .lock-box {
     background: #ffffff; 
-    background-image: none; 
     border: 5px solid #ff69b4; 
-    padding: 15px; 
-    border-radius: 12px; 
-    box-shadow: 0 0 0 4px #ffc0cb, 0 0 25px rgba(0, 0, 0, 0.4); 
-    opacity: 0;
+    border-radius: 25px; 
+    padding: 15px;
+    box-shadow: 0 0 0 5px #ffc0cb, 0 0 20px rgba(0, 0, 0, 0.4);
+    opacity: 0; /* JANGAN UBAH INI */
     animation: bounceInUp 0.8s ease-out forwards; 
-    animation-delay: 0s; 
+    animation-delay: 0s;
     
     font-family: 'Quicksand', sans-serif; 
     color: #ff69b4;
-    max-width: 600px; 
-    width: 95%; 
-    margin-top: 5px; 
-    display: flex; 
+    
+    max-width: 350px !important;
+    width: 90% !important; 
+    margin: 10px auto !important;
+    
+    display: flex; /* Biarkan FLEX, tapi tanpa !important berlebihan */
     flex-direction: column;
     align-items: center; 
+    
     text-align: center;
     box-sizing: border-box; 
     z-index: 30;
 }
 
-
 .riddle-intro-text, .lock-box .instruction-text, #riddle-container p {
-    font-size: 1.15em !important; 
+    font-size: 1.0em !important; 
     color: #ff69b4; 
     line-height: 1.5; 
-    padding: 8px 12px; 
+    padding: 8px 12px;
+    max-width: 90% !important;
+    margin: 5px auto !important; 
     border-left: 5px solid #ff69b4; 
     border-radius: 0; 
     background-color: #fffaf0; 
@@ -298,7 +304,10 @@ input[type="text"]:focus, select:focus {
 
 
 .framed-text {
-    display: inline-block; 
+    display: flex;
+     flex-direction: column !important; 
+    align-items: center;
+    gap: 15px;
     vertical-align: middle; 
     margin-right: 10px; 
     font-size: 1.15em; 
@@ -317,8 +326,7 @@ input[type="text"]:focus, select:focus {
     text-transform: none !important; 
 }
 
-
-.framed-text::before,
+.framed-text::before, 
 .framed-text::after {
     content: '🦋'; 
     position: absolute;
@@ -329,33 +337,44 @@ input[type="text"]:focus, select:focus {
     text-shadow: 0 0 3px #fff;
     pointer-events: none;
 }
+
+/* Kupu-kupu Kiri Atas */
 .framed-text::before {
     top: -12px; 
     left: -12px; 
     transform: rotate(-15deg);
 }
+
+/* Kupu-kupu Kanan Bawah */
 .framed-text::after {
     bottom: -12px; 
     right: -12px; 
     transform: rotate(15deg);
 }
-
-
-
-#riddle-container-2 {
-    position: relative;
-    padding-top: 35px;
-    
-    
-    opacity: 0; 
+.framed-text {
     display: flex;
-    flex-direction: column;
-    align-items: center; 
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-    
+    flex-direction: column !important; 
+    align-items: center;
+    gap: 15px;
+    vertical-align: middle; 
+    margin-right: 0px !important; 
+    font-size: 1.15em; 
+    font-weight: 600; 
+    background-color: transparent !important; 
+    color: #ffffff !important; 
+    text-shadow: 0 0 5px #010001; 
+    padding: 10px 15px; 
+    margin: 15px auto; 
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 320px; 
+    border-radius: 15px;
+    border: 1px dashed rgba(255, 255, 255, 0.5); 
+    box-shadow: 0 0 5px rgba(255, 105, 180, 0.7); 
+    position: relative;
+    overflow: visible; 
+    text-transform: none !important; 
 }
-
-
 #riddle-container-2.fade-in {
     opacity: 1;
     transform: translateY(0);
@@ -369,7 +388,8 @@ input[type="text"]:focus, select:focus {
     border: 1px dashed rgba(255, 105, 180, 0.8) !important; 
     box-shadow: 0 0 5px rgba(255, 105, 180, 0.7) !important; 
     padding: 10px;
-    max-width: 250px;
+    width: 250px;
+    max-width: 90px;
     font-size: 1.15em;
     margin-bottom: 5px;
 }
@@ -384,6 +404,23 @@ input[type="text"]:focus, select:focus {
     z-index: 10;
     text-shadow: 0 0 5px #ff69b4;
     pointer-events: none;
+}
+/* BLOK KODE BARU: Khusus untuk input Tgl/Bln/Tahun */
+#page2-greeting input[type="text"], 
+#page2-greeting select {
+    /* Batalkan lebar 250px yang terlalu besar */
+    width: 70px !important; 
+    max-width: 70px !important;
+    
+    /* Atur agar rata tengah (margin: auto tidak diperlukan di sini) */
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    
+    /* Atur padding agar isinya pas */
+    padding: 10px 5px !important;
+    
+    /* Ukuran Font agar tetap terbaca */
+    font-size: 1.25em !important;
 }
 #riddle-container-2::before {
     top: -50px; 
@@ -611,7 +648,7 @@ input[type="text"]:focus, select:focus {
     
     input[type="text"] { 
         max-width: 90% !important; 
-        width: 90% !important; 
+        width: 200% !important; 
         padding: 10px !important; 
         border-radius: 8px !important; 
         font-size: 1.8em !important; 
@@ -645,8 +682,8 @@ input[type="text"]:focus, select:focus {
 
     #riddle-container-2 .answer-button {
         font-size: 1.8em !important; 
-        max-width: 80% !important; 
-        width: 80% !important;
+        max-width: 90% !important; 
+        width: 200% !important;
         margin: 0 auto; 
     }
     
