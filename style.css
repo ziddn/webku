@@ -47,10 +47,10 @@ body {
     min-height: 100vh;
     background-image: url('layy.jpg'); 
     background-size: cover; 
-    background-position: center; 
+    background-position: 70% center !important; 
+    
     background-attachment: fixed;
     background-repeat: no-repeat; 
-    /* BACKGROUND BERSIH */
     background-color: #f0f8ff; 
     background-blend-mode: normal; 
     z-index: -10; 
@@ -92,7 +92,7 @@ body {
     left: 0;
     height: 100% !important;
     overflow-y: auto !important;
-    background-color: transparant;
+    background-color: rgba(0, 0, 0, 0.45);
     background-image: none; 
 
     opacity: 0;
@@ -453,8 +453,8 @@ input[type="text"],  select{
     height: 220px; 
     object-fit: cover; 
     border-radius: 10px;
-    box-shadow: 0 5px 20px #ff69b4(0, 0, 0, 0.945), 0 0 0 5px #ff69b4; 
-    border: 7px solid #ffffff; 
+    box-shadow:  0 5px 15px rgba(0, 0, 0, 0.5); 
+    border: 5px solid #ff69b4;
     opacity: 0; 
     animation: zoomInRotate 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
     object-position: center; 
@@ -486,9 +486,9 @@ input[type="text"],  select{
 .message-box {
     font-family: 'Quicksand', sans-serif; 
     font-size: 1.20em; 
-    background: transparant; 
-    border: 8px double #ff69b4; 
-    box-shadow: 0 10px 40px #ff69b4(0, 0, 0, 0.6); 
+    background: #ffc0cb;
+    border: none;
+    box-shadow: none;
     padding: 10px 40px; 
     border-radius: 15px; 
     max-width: 700px; 
@@ -505,7 +505,7 @@ input[type="text"],  select{
     text-shadow: none !important; 
     position: relative; 
     background-image: none;
-    background-color: transparant;;
+    background-color:  #ffc0cb;
 }
 
 
@@ -549,8 +549,9 @@ input[type="text"],  select{
 
 .message-box p {
     margin: 5px 0; 
-    text-align: justify; 
-    color: #ffffff!important; 
+    text-align: justify;
+    font-size: 0.9em !important; 
+    color:  #8b0000 !important;
     text-shadow: none !important; 
     position: relative; 
     display: block; 
@@ -704,16 +705,15 @@ input[type="text"],  select{
 .fade-in-slide-up {
     animation: zoomFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
-} /* <--- BARIS INI HARUS ADA UNTUK MENUTUP BLOK SEBELUMNYA */
-
-/* KODE MEDIA QUERY DIMULAI DI SINI (Sebagai blok mandiri, di luar blok CSS lain) */
-@media (max-width: 480px) {
-    /* Blok khusus untuk Input Tanggal Lahir agar seragam di HP */
+} 
+@media (max-width: 480px) { 
+    #background-layer {
+        background-position: 65% center !important;
+    } 
     #key-input-container input {
         width: 70px !important; 
         max-width: 70px !important;
         padding: 8px !important;
         font-size: 1.25em !important;
     } 
-    /* Blok ini sekarang ditutup secara otomatis di baris akhir */
 }
