@@ -92,7 +92,7 @@ body {
     left: 0;
     height: 100% !important;
     overflow-y: auto !important;
-    background-color: rgba(0, 0, 0, 0.45); 
+    background-color: transparant;
     background-image: none; 
 
     opacity: 0;
@@ -108,7 +108,7 @@ body {
 #page4.page-container {
     padding-bottom: 40px !important; 
     justify-content: flex-start; 
-    background-color: rgba(0, 0, 0, 0.45); 
+    background-color: transparant;
     color: #ffffff; 
     text-shadow: 0 0 5px #ff69b4(0, 0, 0, 0.9), 0 0 10px rgba(255, 105, 180, 0.7);
 }
@@ -277,13 +277,13 @@ input[type="text"],  select{
 .fancy-text-box {
     font-family: 'Quicksand', sans-serif;
     font-weight: 600; 
-    background-color: rgba(255, 255, 255, 0.95); 
+    background-color: #ffffff(255, 255, 255, 0.95); 
     border: 3px solid #ff69b4; 
     border-radius: 12px;
     padding: 15px 25px; 
     margin: 15px auto; 
     max-width: 90%; 
-    color: #ff69b4!important; 
+    color: #ffffff!important; 
     text-shadow: none !important;
     line-height: 1.2; 
     font-size: 1.15em;
@@ -486,7 +486,7 @@ input[type="text"],  select{
 .message-box {
     font-family: 'Quicksand', sans-serif; 
     font-size: 1.20em; 
-    background: #fffaf0; 
+    background: transparant; 
     border: 8px double #ff69b4; 
     box-shadow: 0 10px 40px #ff69b4(0, 0, 0, 0.6); 
     padding: 10px 40px; 
@@ -505,7 +505,7 @@ input[type="text"],  select{
     text-shadow: none !important; 
     position: relative; 
     background-image: none;
-    background-color: #fffaf0;
+    background-color: transparant;;
 }
 
 
@@ -550,7 +550,7 @@ input[type="text"],  select{
 .message-box p {
     margin: 5px 0; 
     text-align: justify; 
-    color: #ff69b4!important; 
+    color: #ffffff!important; 
     text-shadow: none !important; 
     position: relative; 
     display: block; 
