@@ -397,21 +397,14 @@ input[type="text"]:focus,  select:focus {
     text-shadow: 0 0 5px #ff69b4;
     pointer-events: none;
 }
-/* BLOK KODE BARU: Khusus untuk input Tgl/Bln/Tahun */
+/* BLOK KODE KHUSUS INPUT TGL/BLN/TAHUN - Halaman 3 (PERBAIKAN LEBAR INI DIBERIKAN UNTUK MEMPERBAIKI MASALAH ANDA SEBELUMNYA) */
 #page2-greeting input[type="text"], 
 #page2-greeting select {
-    /* Batalkan lebar 250px yang terlalu besar */
     width: 80px !important; 
     max-width: 80px !important;
-    
-    /* Atur agar rata tengah (margin: auto tidak diperlukan di sini) */
     margin-left: 5px !important;
     margin-right: 5px !important;
-    
-    /* Atur padding agar isinya pas */
     padding: 10px 5px !important;
-    
-    /* Ukuran Font agar tetap terbaca */
     font-size: 1.25em !important;
 }
 #riddle-container-2::before {
@@ -432,11 +425,18 @@ input[type="text"]:focus,  select:focus {
     gap: 10px;
     justify-content: center;
     margin-bottom: 8px; 
+    /* !!! PERBAIKAN LEBAR AGAR TIDAK MENDORONG KOTAK PUTIH LEBAR !!! */
+    max-width: 300px; 
+    margin: 15px auto 8px auto; 
 }
 #key-input-container input {
     width: 80px; 
     padding: 10px;
     font-size: 1.1em; 
+    /* Reset properti lebar yang teralu agresif */
+    max-width: 100px;
+    min-width: 50px;
+    
 }
 
 .photo-display-container {
@@ -620,7 +620,7 @@ input[type="text"]:focus,  select:focus {
     40%, 80% { transform: translateX(5px); }
 }
 /* ================================================= */
-/* MEDIA QUERIES (HP/MOBILE) - FINAL FIXES           */
+/* MEDIA QUERIES (HP/MOBILE)             */
 /* ================================================= */
 
 @media (max-width: 768px) {
@@ -631,6 +631,15 @@ input[type="text"]:focus,  select:focus {
     
     .message-box::before { top: -20px; left: -10px; font-size: 2.0em; }
     .message-box::after { bottom: -15px; right: -10px; font-size: 1.8em; }
+    
+    /* Perbaikan agar input tanggal lahir lebih rapi di tablet/landscape */
+    #key-input-container {
+        gap: 8px;
+    }
+    #key-input-container input {
+        width: 70px;
+        font-size: 1.0em;
+    }
 }
 
 
@@ -666,7 +675,7 @@ input[type="text"]:focus,  select:focus {
 
     /* KECILKAN KOTAK KUIS (.secret-container/lock-box) */
     .secret-container, .lock-box {
-        max-width: 250px !important; 
+        max-width: 250px !important; /* Kotak Putih Kunci / Kuis diperkecil */
         padding: 10px !important; 
     }
 
@@ -676,52 +685,40 @@ input[type="text"]:focus,  select:focus {
         line-height: 1.3;
         margin-bottom: 5px !important;
         padding: 6px !important;
-        text-align: center !important; /* Agar semua instruksi rata tengah */
-        padding-left: 0 !important; /* Hapus padding kiri dari .riddle-intro-text */
-        border-left: none !important; /* Hapus garis kiri dari .riddle-intro-text */
+        text-align: center !important; 
+        padding-left: 0 !important; 
+        border-left: none !important; 
     }
     
-    /* === AREA KRITIS 1: TEKS INSTRUKSI DI KUIS KEDUA ("Tulis Jawabannya Dibawah") === */
-    /* Karena di HTML sudah diganti ke .riddle-intro-text, maka styling di atas sudah berlaku */
-    /* Kita hanya perlu memastikan styling untuk p di riddle-container-2 yang sebelumnya besar, sekarang ikut mengecil. */
-    #riddle-container-2 p { 
-        font-size: 0.9em !important; 
-        padding: 5px 0 !important;
-        margin: 0 auto 5px auto !important;
-        text-align: center !important;
-        color: #ff69b4 !important; 
-        text-shadow: none !important;
+    /* === PERBAIKAN INPUT TANGGAL LAHIR DI HALAMAN 3 === */
+    #key-input-container {
+        /* Kontainer Input Dibuat Sangat Ramping Agar Muat */
+        max-width: 220px !important; 
+        width: 220px !important;
+        margin: 10px auto 8px auto !important; 
+        gap: 5px !important; /* Jarak antar input diperkecil */
     }
-
-    /* === AREA KRITIS 2: INPUT KUIS KAMPUS (#riddle-answer-input-2) === */
+    #key-input-container input {
+        /* Setiap input (Tgl/Bln/Tahun) dibuat kecil dan sama rata */
+        width: 60px !important; 
+        min-width: 60px !important;
+        max-width: 60px !important; 
+        padding: 8px 0 !important; /* Padding vertikal dikurangi */
+        font-size: 0.9em !important; /* Font dikecilkan */
+        margin: 0 !important; /* Hapus margin yang tidak perlu */
+    }
+    
+    /* KECILKAN INPUT KUIS KAMPUS */
     #riddle-answer-input-2 {
-        display: block !important; 
-        /* LEBAR DIPAKSA SANGAT KETAT */
         min-width: 150px !important; 
         max-width: 150px !important; 
         width: 150px !important; 
-        
-        /* PADDING DAN BOX-SIZING */
         padding: 6px !important; 
-        box-sizing: border-box !important; 
-        
-        /* FONT DAN ALIGNMENT */
         margin: 0 auto 8px auto !important; 
         font-size: 0.9em !important; 
     }
     
-    /* === AREA KRITIS 3: MENGATASI LEBAR PLACEHOLDER DI MOBILE BROWSERS === */
-    #riddle-answer-input-2::-webkit-input-placeholder {
-        font-size: 0.9em !important; 
-        color: rgba(255, 105, 180, 0.7) !important;
-        white-space: nowrap !important; 
-    }
-    #riddle-answer-input-2:-moz-placeholder {
-        font-size: 0.9em !important;
-        color: rgba(255, 105, 180, 0.7) !important;
-    }
-    
-    /* === KONTENER PEMBUNGKUS JUGA DIPAKSA LEBIH KECIL === */
+    /* KONTENER PEMBUNGKUS KUIS 2 JUGA DIPAKSA LEBIH KECIL */
     #riddle-container-2 {
         max-width: 200px !important; 
         margin: 10px auto !important;
@@ -741,22 +738,9 @@ input[type="text"]:focus,  select:focus {
         font-size: 1.0em !important; 
         line-height: 1.4; 
     }
-    .message-box p {
-        font-size: 0.9em !important; 
-    }
 
     .signature { font-size: 1.5em !important; margin-top: 10px; }
     
-    /* KECILKAN ORNAMEN RIBBON/BUTTERFLY DI MESSAGE BOX */
-    .message-box::before { top: -15px; left: -5px; font-size: 1.8em; }
-    .message-box::after { bottom: -10px; right: -5px; font-size: 1.6em; }
-    
-    
-    .message-box #riddle-message-2 {
-        font-size: 0.9em !important; 
-        margin-bottom: 5px;
-        line-height: 1.3;
-    }
 }
 
 
