@@ -542,7 +542,7 @@ input[type="text"]:focus,  select:focus {
 
 .message-box p {
     margin: 5px 0 !important; 
-    text-align: justify !important;
+    text-align: justify; 
     color: #ff69b4!important; 
     text-shadow: none !important; 
     position: relative; 
@@ -722,6 +722,7 @@ input[type="text"]:focus,  select:focus {
     }
 }
 /* DI BAWAH INI LANJUT KE @media (max-width: 480px) */
+
 
 @media (max-width: 480px) {
   
