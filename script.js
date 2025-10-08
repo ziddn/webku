@@ -6,7 +6,7 @@ const correctLockCode = "10012006";
 
 
 const birthdayMessage = [
-    "Selamat ulang tahun Laya Dwi Garini!",
+    "Selamat ulang tahun Laya Dwi Garini!", 
     "Semoga di umur kamu yang sekarang, semuanya makin lancar kuliahnya, urusannya, sama hidup kamu juga.",
     "Semoga makin semangat ngerjain tugas (walau kadang suka kurang semangat wkwk.),",
     "dan semoga kamu selalu dikelilingi orang-orang baik yang bikin kamu nyaman, bukan yang ribet dan nguras energi.",
