@@ -722,7 +722,7 @@ input[type="text"]:focus,  select:focus {
         font-size: 1.0em;
     }
 }
-/* DI BAWAH INI LANJUT KE @media (max-width: 480px) */
+
 
 
 @media (max-width: 480px) {
@@ -731,6 +731,14 @@ input[type="text"]:focus,  select:focus {
         max-width: 320px !important; 
         padding: 20px !important; 
     }
+    .message-box p {
+    font-size: 0.85em !important; 
+    line-height: 1.25 !important;
+    text-align: left !important; 
+    word-break: break-word !important; 
+    color: #ff69b4 !important;
+    text-shadow: none !important;
+}
 
    
     .riddle-intro-text, .lock-box .instruction-text, #riddle-container p {
