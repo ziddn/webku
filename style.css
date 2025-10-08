@@ -542,7 +542,7 @@ input[type="text"]:focus,  select:focus {
 
 .message-box p {
     margin: 5px 0 !important; 
-    text-align: justify; 
+    text-align: justify !important;
     color: #ff69b4!important; 
     text-shadow: none !important; 
     position: relative; 
@@ -682,13 +682,26 @@ input[type="text"]:focus,  select:focus {
 
 @media (max-width: 768px) {
     body {
-        background-position: center center !important; /* <--- KUNCI: BACKGROUND DI TENGAH */
-        background-size: cover !important; /* Pastikan gambar mengisi layar */
+        background-position: center center !important; 
+        background-size: cover !important; 
         background-attachment: fixed;
     }
     
-    /* ... kode yang sudah ada ... */
-}
+    /* PENGATURAN TEKS DAN KOTAK PESAN DI HP */
+    .message-box {
+        padding: 10px 20px; /* Kurangi padding agar teks lebih lega */
+        max-width: 90%; 
+        margin-left: auto; 
+        margin-right: auto; 
+        font-size: 1.1em; /* Kecilkan sedikit font agar muat */
+    }
+    
+    .message-box p {
+        text-align: justify !important; /* <--- KUNCI: MEMBUAT RATA KIRI-KANAN RAPI */
+        line-height: 1.4;
+    }
+    
+    /* KODE RESPONSIVE LAINNYA YANG TADI TERPUTUS, SEKARANG SUDAH DI DALAM BLOK */
     .photo-display-container { gap: 10px; }
     .display-photo { width: 35%; height: 160px; }
     #page2-greeting { font-size: 4em; }
@@ -697,7 +710,6 @@ input[type="text"]:focus,  select:focus {
     .message-box::before { top: -20px; left: -10px; font-size: 2.0em; }
     .message-box::after { bottom: -15px; right: -10px; font-size: 1.8em; }
     
-    /* Perbaikan agar input tanggal lahir lebih rapi di tablet/landscape */
     #key-input-container {
         gap: 8px;
     }
@@ -705,8 +717,7 @@ input[type="text"]:focus,  select:focus {
         width: 70px;
         font-size: 1.0em;
     }
-
-
+}
 
 @media (max-width: 480px) {
   
