@@ -7,14 +7,12 @@ const correctLockCode = "10012006";
 
 const birthdayMessage = [
     "Selamat ulang tahun Laya Dwi Garini!",
-    "Semoga di umur kamu yang sekarang, semuanya makin lancar kuliahnya, urusannya, sama hidup kamu juga.",
+    "Semoga di umur kamu yang sekarang, semuanya makin lancar: kuliahnya, urusannya, sama hidup kamu juga.",
     "Semoga makin semangat ngerjain tugas (walau kadang suka kurang semangat wkwk.),",
     "dan semoga kamu selalu dikelilingi orang-orang baik yang bikin kamu nyaman, bukan yang ribet dan nguras energi.",
     "Pokoknya semoga makin bahagia, makin tenang, dan makin yakin sama jalan kamu sendiri.",
-    "Enjoy ya harinya, istirahat yang cukup, makan enak, dan jangan lupa senyum hari ini."
-    "Terakhir Dari Aku Semangatt KULIAHNYAA!!."
+    "Enjoy ya harinya, Semangatt Kuliahnyaa!! dan jangan lupa senyum hari ini."
 ];
-
 
 
 
@@ -351,5 +349,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const buttonLanjut1 = document.querySelector('#page1 button');
     if (buttonLanjut1) buttonLanjut1.onclick = goToPage2;
-
 });
