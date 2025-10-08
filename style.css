@@ -477,7 +477,7 @@ input[type="text"]:focus,  select:focus {
 
 .message-box {
     font-family: 'Quicksand', sans-serif; 
-    font-size: 1.20em; 
+    font-size: 0.90em; 
     background: #fffaf0; 
     border: 8px double #ff69b4; 
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); 
@@ -544,7 +544,8 @@ input[type="text"]:focus,  select:focus {
     margin: 5px 0 !important; 
     text-align: justify; 
     color: #ff69b4!important; 
-    text-shadow: none !important; 
+    text-shadow: none !important;
+    font-size: 1.0em;
     position: relative; 
     display: block; 
     line-height: 1.5 !important; 
@@ -693,7 +694,7 @@ input[type="text"]:focus,  select:focus {
         max-width: 95%; /* Biarkan kotak lebih lebar agar teks punya ruang */
         margin-left: auto; 
         margin-right: auto; 
-        font-size: 1.05em; /* Kurangi font size sedikit */
+        font-size: 1.0em; /* Kurangi font size sedikit */
     }
     
     .message-box p {
@@ -733,7 +734,7 @@ input[type="text"]:focus,  select:focus {
 
    
     .riddle-intro-text, .lock-box .instruction-text, #riddle-container p {
-        font-size: 1.1em !important; 
+        font-size: 0.95em !important; 
         line-height: 1.4;
         text-align: center !important; 
         color:  #ff69b4 !important;
